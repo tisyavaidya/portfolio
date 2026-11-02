@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Tisya Vaidya</title>
+  <meta name="description" content="Tisya Vaidya is a data scientist and master's student in Machine Learning and Statistics at Uppsala University, Sweden.">
+  <link rel="canonical" href="https://tisyavaidya.com/about">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tisyavaidya.com/about">
+  <meta property="og:title" content="About | Tisya Vaidya">
+  <meta property="og:description" content="Tisya Vaidya is a data scientist and master's student in Machine Learning and Statistics at Uppsala University, Sweden.">
+  <meta property="og:image" content="https://tisyavaidya.com/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script>
+    /* Apply the saved or system theme before the page paints */
+    (function () {
+      var t = null; try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (!t) t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body data-page="about">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="card">
+    <header id="site-header"></header>
+    <main id="main">
+
+      <header class="page-head">
+        <h1>About me</h1>
+        <p>Data scientist, master's student, former learning assistant, occasional boxer.</p>
+      </header>
+      <div class="about-grid">
+        <img class="portrait" src="assets/tisya.jpg" alt="Portrait of Tisya Vaidya" width="720" height="784">
+        <div class="prose">
+          <p class="big">I like the part of data science where you find out whether a model actually works: what it gets right, where it fails, and why.</p>
+          <p>I studied Computational Data Science at Penn State, with minors in Mathematics and Statistics, and graduated in May 2025. In August 2026 I moved to Sweden to start a master's in Data Science at Uppsala University, specialising in Machine Learning and Statistics.</p>
+          <p>My work so far spans NLP, computer vision for autonomous vehicles, robust regression research, generative AI and business analytics. I've also spent a lot of time teaching: as a learning assistant for programming and maths courses, and as a Python facilitator for the Women in Engineering Program.</p>
+          <p>Away from the keyboard I box, cook and travel.</p>
+        </div>
+      </div>
+
+      <h2 class="sub">Education</h2>
+      <ol class="timeline" id="education"></ol>
+
+      <h2 class="sub">Skills</h2>
+      <dl class="skills" id="skills"></dl>
+    </main>
+    <footer id="site-footer"></footer>
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/backdrop.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>
