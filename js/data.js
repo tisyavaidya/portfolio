@@ -115,28 +115,26 @@ window.SITE = {
 
   languages: ["English", "Hindi", "Marathi", "Swedish (learning, A2)"],
 
-  // Courses (the me.courses cell on the About page): [area, code, title]
+  // Courses (the me.courses cell on the About page): [degree, course, area]
   courses: [
-    ["Uppsala (now)", "", "Statistical Machine Learning"],
-    ["Uppsala (now)", "", "Modelling for Combinatorial Optimisation"],
-    ["Machine learning and AI", "CMPSC 448", "Machine Learning and AI"],
-    ["Machine learning and AI", "DS 442", "Artificial Intelligence"],
-    ["Data science", "DS 340W", "Applied Data Sciences"],
-    ["Data science", "STAT 380", "Data Science Through Statistical Reasoning and Computation"],
-    ["Data science", "DS 220", "Data Management for Data Sciences"],
-    ["Data science", "CMPSC 410", "Programming Models for Big Data"],
-    ["Data science", "DS 435", "Data Ethics"],
-    ["Statistics", "STAT 414", "Introduction to Probability Theory"],
-    ["Statistics", "STAT 415", "Introduction to Mathematical Statistics"],
-    ["Statistics", "STAT 462", "Applied Regression Analysis"],
-    ["Statistics", "STAT 461", "Analysis of Variance"],
-    ["Mathematics", "MATH 484", "Linear Programming"],
-    ["Mathematics", "MATH 230", "Calculus and Vector Analysis"],
-    ["Mathematics", "MATH 220", "Matrices"],
-    ["Computer science", "CMPSC 465", "Data Structures and Algorithms"],
-    ["Computer science", "CMPSC 360", "Discrete Mathematics for Computer Science"],
-    ["Computer science", "CMPSC 221", "Object-Oriented Programming with Web-Based Applications"],
-    ["Computer science", "CMPSC 132", "Programming and Computation II: Data Structures"]
+    ["Master's (Uppsala)", "Statistical Machine Learning", "Machine learning"],
+    ["Master's (Uppsala)", "Modelling for Combinatorial Optimisation", "Optimisation"],
+    ["Bachelor's (Penn State)", "Machine Learning and AI", "Machine learning"],
+    ["Bachelor's (Penn State)", "Artificial Intelligence", "Machine learning"],
+    ["Bachelor's (Penn State)", "Applied Data Sciences", "Data science"],
+    ["Bachelor's (Penn State)", "Data Science Through Statistical Reasoning and Computation", "Data science"],
+    ["Bachelor's (Penn State)", "Data Management for Data Sciences", "Data science"],
+    ["Bachelor's (Penn State)", "Programming Models for Big Data", "Data science"],
+    ["Bachelor's (Penn State)", "Data Ethics", "Data science"],
+    ["Bachelor's (Penn State)", "Introduction to Probability Theory", "Statistics"],
+    ["Bachelor's (Penn State)", "Introduction to Mathematical Statistics", "Statistics"],
+    ["Bachelor's (Penn State)", "Applied Regression Analysis", "Statistics"],
+    ["Bachelor's (Penn State)", "Analysis of Variance", "Statistics"],
+    ["Bachelor's (Penn State)", "Linear Programming", "Optimisation"],
+    ["Bachelor's (Penn State)", "Data Structures and Algorithms", "Computer science"],
+    ["Bachelor's (Penn State)", "Discrete Mathematics for Computer Science", "Computer science"],
+    ["Bachelor's (Penn State)", "Object-Oriented Programming with Web-Based Applications", "Computer science"],
+    ["Bachelor's (Penn State)", "Programming and Computation II: Data Structures", "Computer science"]
   ],
 
   skills: [

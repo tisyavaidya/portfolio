@@ -320,13 +320,7 @@
 }</pre>`;
     },
     languages() { return `<pre class="repr">[${S.languages.map(l => `<span class="tk-s">'${esc(l)}'</span>`).join(", ")}]</pre>`; },
-    courses() {
-      let prev = null;
-      return dataFrame(["area", "code", "course"], S.courses.map(([a, c, t]) => {
-        const shown = a === prev ? "" : esc(a); prev = a;
-        return [shown ? `<strong>${shown}</strong>` : "", esc(c), esc(t)];
-      }));
-    },
+    courses() { let prev = null; return dataFrame(["degree", "course", "area"], S.courses.map(([d, c, a]) => { const shown = d === prev ? "" : esc(d); prev = d; return [shown ? `<strong>${shown}</strong>` : "", esc(c), esc(a)]; })); },
     skills() { return dataFrame(["area", "tools"], S.skills.map(([k, v]) => [esc(k), esc(v)])); },
     hobbies() { return `<pre class="repr">[<span class="tk-s">'boxing'</span>, <span class="tk-s">'cooking'</span>, <span class="tk-s">'travel'</span>]</pre>`; },
     plot(out) { if (window.RLSPlot) window.RLSPlot.run(); return null; },
