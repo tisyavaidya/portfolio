@@ -299,7 +299,17 @@
       </li>`).join("")}</ol>`;
   }
 
-  const RENDER = {
+  // Python-style repr of a list of [key, value] pairs (strings, numbers, lists)
+function pyVal(v) {
+  if (Array.isArray(v)) return `[${v.map(pyVal).join(", ")}]`;
+  if (typeof v === "number") return `<span class="tk-n">${v}</span>`;
+  return `<span class="tk-s">'${esc(v)}'</span>`;
+}
+function pyDict(pairs) {
+  return `<pre class="repr dict">{\n${pairs.map(([k, v]) => `    <span class="tk-s">'${esc(k)}'</span>: ${pyVal(v)},`).join("\n")}\n}</pre>`;
+}
+
+const RENDER = {
     "me-repr"() {
       return `<pre class="repr">Tisya(
     name=<span class="tk-s">'${esc(S.name)}'</span>,
@@ -311,18 +321,13 @@
     },
     education() { return dataFrame(["degree", "school", "dates"], S.education.map(e => [esc(e.degree), esc(e.school), esc(e.dates)])); },
     now() {
-      const n = S.now, q = v => `<span class="tk-s">'${esc(v)}'</span>`;
-      return `<pre class="repr dict">{
-    <span class="tk-s">'term'</span>: ${q(n.term)},
-    <span class="tk-s">'studying'</span>: [${n.courses.map(q).join(", ")}],
-    <span class="tk-s">'learning'</span>: ${q(n.learning)},
-    <span class="tk-s">'looking_for'</span>: ${q(S.status.replace(/^Open to /, ""))},
-}</pre>`;
+      const n = S.now;
+      return pyDict([["term", n.term], ["studying", n.courses], ["diving_into", n.exploring], ["learning", n.learning], ["looking_for", S.status.replace(/^Open to /, "")]]);
     },
+    "fun-facts"() { return pyDict(S.funFacts); },
     languages() { return `<pre class="repr">[${S.languages.map(l => `<span class="tk-s">'${esc(l)}'</span>`).join(", ")}]</pre>`; },
     courses() { let prev = null; return dataFrame(["degree", "course", "area"], S.courses.map(([d, c, a]) => { const shown = d === prev ? "" : esc(d); prev = d; return [shown ? `<strong>${shown}</strong>` : "", esc(c), esc(a)]; })); },
     skills() { return dataFrame(["area", "tools"], S.skills.map(([k, v]) => [esc(k), esc(v)])); },
-    hobbies() { return `<pre class="repr">[<span class="tk-s">'boxing'</span>, <span class="tk-s">'cooking'</span>, <span class="tk-s">'travel'</span>]</pre>`; },
     plot(out) { if (window.RLSPlot) window.RLSPlot.run(); return null; },
     explore() {
       const blurb = { about: "Who I am and how I got here", experience: "Internships, research and teaching", projects: `${S.projects.length} projects across machine learning and analytics`, contact: "The quickest ways to reach me" };

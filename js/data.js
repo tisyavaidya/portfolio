@@ -110,8 +110,18 @@ window.SITE = {
   now: {
     term: "Autumn 2026",
     courses: ["Statistical Machine Learning", "Modelling for Combinatorial Optimisation"],
+    exploring: ["LLMs", "generative AI", "RAG", "NLP"],
     learning: "Swedish (A2)"
   },
+
+  // The me.fun_facts cell on the About page: [key, value] pairs
+  funFacts: [
+    ["countries_called_home", ["India", "USA", "Sweden"]],
+    ["cats_back_home_in_india", 5],
+    ["favourite_swedish_thing", "fika (and the bakeries)"],
+    ["food", ["anything spicy", "desserts"]],
+    ["binge_watching", ["rom-coms", "supernatural series"]],
+  ],
 
   languages: ["English", "Hindi", "Marathi", "Swedish (learning, A2)"],
 
@@ -300,7 +310,8 @@ window.SITE = {
       "What are you studying?",
       "What kind of role are you looking for?",
       "What's your favourite project?",
-      "What research have you done?"
+      "What research have you done?",
+      "What do you do for fun?"
     ],
     answers: [
       { keys: ["study", "studying", "master", "uppsala", "degree", "education", "university", "school"],
@@ -313,6 +324,8 @@ window.SITE = {
         a: "Two projects at Penn State: making Recursive Least Squares models more robust to outliers (with Dr. Nilanjan Ray Chaudhuri), and stereo visual odometry for GNSS-denied navigation with the Autonomous Vehicle Team, using OpenCV, Python and ROS." },
       { keys: ["experience", "intern", "internships", "worked", "work", "company", "companies"],
         a: "I've interned at Digital Ipsum (data science, 2026), LTIMindtree (generative AI, 2024) and Tata Consultancy Services (data science, 2023). The Experience page has the details." },
+      { keys: ["are you learning", "learning now", "currently learning", "rag", "retrieval", "large language", "llms", "llm"],
+        a: "Right now I'm going deeper into AI: LLMs, generative AI, retrieval-augmented generation (RAG) and NLP." },
       { keys: ["skill", "skills", "python", "sql", "tools", "stack", "tech", "tableau", "power bi", "excel", "java", "matlab", "pandas", "scikit", "know"],
         a: "Python (NumPy, pandas, Matplotlib, scikit-learn) and SQL for data analysis and machine learning, plus Excel, Tableau and Power BI for analytics and dashboards." },
       { keys: ["teach", "teaching", "tutor", "tutoring", "assistant"],
@@ -323,8 +336,14 @@ window.SITE = {
         a: "Email me at vaidyatisya19@gmail.com, or find me on LinkedIn. Everything's on the Contact page." },
       { keys: ["resume", "résumé", "cv"],
         a: "You can open my résumé from the Résumé button at the top of every page." },
-      { keys: ["hobby", "hobbies", "fun", "free time", "outside", "boxing", "cook", "travel"],
-        a: "Outside of data, I box, cook and travel." },
+      { keys: ["hobby", "hobbies", "fun", "free time", "outside", "weekend", "netflix", "watch", "show", "shows"],
+        a: "In my free time I binge-watch Netflix, usually rom-coms or supernatural series. I also love food, especially anything spicy, and desserts." },
+      { keys: ["cat", "cats", "pet", "pets", "animal"],
+        a: "I have five cats back home in India." },
+      { keys: ["fika", "food", "eat", "bakery", "bakeries", "spicy", "dessert", "desserts", "cook"],
+        a: "I love eating, especially spicy food and desserts. Sweden's fika culture and its bakeries are one of my favourite things about living here." },
+      { keys: ["india", "usa", "america", "move", "moved", "abroad", "grew up", "where are you from", "background", "culture", "adapt"],
+        a: "I moved from India to the USA for my bachelor's at Penn State, then to Sweden for my master's at Uppsala. I adapt quickly to new places and cultures." },
       { keys: ["language", "languages", "speak", "swedish", "hindi", "marathi", "english"],
         a: "I speak English, Hindi and Marathi, and I'm learning Swedish (currently A2)." },
       { keys: ["course", "courses", "class", "classes", "taking", "semester", "term"],
