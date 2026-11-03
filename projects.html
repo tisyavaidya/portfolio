@@ -24,26 +24,36 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/notebook.css">
 </head>
 <body data-page="projects">
-  <a class="skip" href="#main">Skip to content</a>
-  <div class="card">
-    <header id="site-header"></header>
-    <main id="main">
+  <a class="skip" href="#notebook">Skip to notebook</a>
+  <div id="app">
+    <div class="main">
+      <main class="notebook" id="notebook">
 
-      <header class="page-head">
-        <h1>Projects</h1>
-        <p>Machine learning, analytics and software projects. Open any one for the full write-up.</p>
-      </header>
-      <div class="filters" id="project-filters" role="group" aria-label="Filter projects"></div>
-      <ul class="pgrid" id="project-grid"></ul>
-    </main>
-    <footer id="site-footer"></footer>
+        <div class="cell md"><div class="cell-body">
+          <h1>Projects</h1>
+          <p class="lede">Machine learning, analytics and software projects. Pick a category, then open any project for the full write-up and a link to its code.</p>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>projects = me.load(&quot;projects&quot;)
+projects[&quot;category&quot;].value_counts()</code></pre>
+          <div class="output" data-render="project-counts" hidden><span class="out-prompt"></span><div class="out-body"></div></div>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>from ipywidgets import interact
+
+interact(projects.show, category=[&quot;all&quot;, &quot;ml&quot;, &quot;analytics&quot;, &quot;software&quot;])</code></pre>
+          <div class="output" data-render="project-grid" hidden><div class="out-body"></div></div>
+        </div></div>
+      </main>
+    </div>
   </div>
   <script src="js/data.js"></script>
-  <script src="js/backdrop.js"></script>
-  <script src="js/site.js"></script>
+  <script src="js/notebook.js"></script>
 </body>
 </html>

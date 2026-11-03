@@ -24,26 +24,47 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/notebook.css">
 </head>
 <body data-page="experience">
-  <a class="skip" href="#main">Skip to content</a>
-  <div class="card">
-    <header id="site-header"></header>
-    <main id="main">
+  <a class="skip" href="#notebook">Skip to notebook</a>
+  <div id="app">
+    <div class="main">
+      <main class="notebook" id="notebook">
 
-      <header class="page-head">
-        <h1>Experience</h1>
-        <p>Internships, research and teaching since 2022. Click a bar to jump to the details.</p>
-      </header>
-      <div class="gantt" id="gantt"></div>
-      <div id="exp-list"></div>
-    </main>
-    <footer id="site-footer"></footer>
+        <div class="cell md"><div class="cell-body">
+          <h1>Experience</h1>
+          <p class="lede">Internships, research and teaching since 2022. Click a bar to jump to its details.</p>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>experience = me.load(&quot;experience&quot;)
+experience.plot.gantt(color_by=&quot;kind&quot;)</code></pre>
+          <div class="output" data-render="gantt" hidden><div class="out-body"></div></div>
+        </div></div>
+
+        <div class="cell md"><div class="cell-body">
+          <h2>Work and research</h2>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>experience.query(&quot;kind != &#x27;teaching&#x27;&quot;).show()</code></pre>
+          <div class="output" data-render="work-research" hidden><div class="out-body"></div></div>
+        </div></div>
+
+        <div class="cell md"><div class="cell-body">
+          <h2>Teaching</h2>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>experience.query(&quot;kind == &#x27;teaching&#x27;&quot;).show()</code></pre>
+          <div class="output" data-render="teaching" hidden><div class="out-body"></div></div>
+        </div></div>
+      </main>
+    </div>
   </div>
   <script src="js/data.js"></script>
-  <script src="js/backdrop.js"></script>
-  <script src="js/site.js"></script>
+  <script src="js/notebook.js"></script>
 </body>
 </html>

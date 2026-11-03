@@ -132,6 +132,8 @@
   readColors(); reset();
   if ("ResizeObserver" in window) new ResizeObserver(resize).observe(canvas); else window.addEventListener("resize", resize);
   resize();
-  const intro = () => { lineProgress = 0; animate(900, e => { lineProgress = e; }); };
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { resize(); intro(); }); else intro();
+  // The notebook calls this when the plot's cell runs
+  window.RLSPlot = {
+    run() { reset(); resize(); lineProgress = 0; animate(900, e => { lineProgress = e; }); }
+  };
 })();

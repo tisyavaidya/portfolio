@@ -24,39 +24,47 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/notebook.css">
 </head>
 <body data-page="about">
-  <a class="skip" href="#main">Skip to content</a>
-  <div class="card">
-    <header id="site-header"></header>
-    <main id="main">
+  <a class="skip" href="#notebook">Skip to notebook</a>
+  <div id="app">
+    <div class="main">
+      <main class="notebook" id="notebook">
 
-      <header class="page-head">
-        <h1>About me</h1>
-        <p>Data scientist, master's student, former learning assistant, occasional boxer.</p>
-      </header>
-      <div class="about-grid">
-        <img class="portrait" src="assets/tisya.jpg" alt="Portrait of Tisya Vaidya" width="720" height="784">
-        <div class="prose">
-          <p class="big">I like the part of data science where you find out whether a model actually works: what it gets right, where it fails, and why.</p>
+        <div class="cell md"><div class="cell-body">
+          <h1>About me</h1>
+          <p class="lede">I like the part of data science where you find out whether a model actually works: what it gets right, where it fails, and why.</p>
           <p>I studied Computational Data Science at Penn State, with minors in Mathematics and Statistics, and graduated in May 2025. In August 2026 I moved to Sweden to start a master's in Data Science at Uppsala University, specialising in Machine Learning and Statistics.</p>
           <p>My work so far spans NLP, computer vision for autonomous vehicles, robust regression research, generative AI and business analytics. I've also spent a lot of time teaching: as a learning assistant for programming and maths courses, and as a Python facilitator for the Women in Engineering Program.</p>
-          <p>Away from the keyboard I box, cook and travel.</p>
-        </div>
-      </div>
+        </div></div>
 
-      <h2 class="sub">Education</h2>
-      <ol class="timeline" id="education"></ol>
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>from IPython.display import Image
 
-      <h2 class="sub">Skills</h2>
-      <dl class="skills" id="skills"></dl>
-    </main>
-    <footer id="site-footer"></footer>
+Image(&quot;assets/tisya.jpg&quot;, width=280)</code></pre>
+          <div class="output" data-render="" hidden><div class="out-body"><img class="portrait" src="assets/tisya.jpg" alt="Portrait of Tisya Vaidya" width="720" height="784"></div></div>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>me.education</code></pre>
+          <div class="output" data-render="education" hidden><span class="out-prompt"></span><div class="out-body"></div></div>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>me.skills</code></pre>
+          <div class="output" data-render="skills" hidden><span class="out-prompt"></span><div class="out-body"></div></div>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>me.hobbies</code></pre>
+          <div class="output" data-render="hobbies" hidden><span class="out-prompt"></span><div class="out-body"></div></div>
+        </div></div>
+      </main>
+    </div>
   </div>
   <script src="js/data.js"></script>
-  <script src="js/backdrop.js"></script>
-  <script src="js/site.js"></script>
+  <script src="js/notebook.js"></script>
 </body>
 </html>

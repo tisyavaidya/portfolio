@@ -24,50 +24,72 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/notebook.css">
 </head>
 <body data-page="home">
-  <a class="skip" href="#main">Skip to content</a>
-  <div class="card">
-    <header id="site-header"></header>
-    <main id="main">
+  <a class="skip" href="#notebook">Skip to notebook</a>
+  <div id="app">
+    <div class="main">
+      <main class="notebook" id="notebook">
 
-      <section class="hero" aria-labelledby="hi">
-        <div>
-          <h1 id="hi">Hi, I'm Tisya Vaidya.</h1>
-          <p class="lede">I'm a data scientist who likes turning messy data into models people can trust. Right now I'm doing a master's in Machine Learning and Statistics at Uppsala University in Sweden.</p>
-          <p>Before that: Computational Data Science at Penn State, internships in data science and generative AI, research on autonomous vehicles and robust regression, and a lot of teaching.</p>
-          <div class="actions">
-            <a class="btn-solid btn-lg" href="projects.html">See my projects</a>
-            <button type="button" class="btn-ghost btn-lg" data-open-ask>Ask me something</button>
-          </div>
-        </div>
-        <figure class="fit">
-          <div class="plot-frame">
-            <canvas id="fit-canvas" role="img" aria-label="Scatter plot with a fitted regression line. Click or tap the plot to add points; the line refits each time."></canvas>
-          </div>
-          <figcaption>
-            <span class="eq" id="fit-eq">ŷ = …</span>
-            <span class="hint">Click the plot to add a point. The line refits with recursive least squares, which I worked on in my research.</span>
-            <button type="button" class="link-btn" id="fit-reset">Reset</button>
-          </figcaption>
-        </figure>
-      </section>
+        <div class="cell md"><div class="cell-body">
+          <h1>Hi, I'm Tisya Vaidya.</h1>
+          <p class="lede">I'm a data scientist who likes turning messy data into models people can trust. I'm studying for a master's in Machine Learning and Statistics at Uppsala University in Sweden.</p>
+          <p>This site is a notebook. Press ▶ next to a cell to run it again, or use <strong>Run all</strong> at the top. The code is illustrative; the outputs are real.</p>
+        </div></div>
 
-      <h2 class="section-title">Explore</h2>
-      <ul class="explore">
-        <li><a href="about.html"><div class="pic" data-chart="density"></div><strong>About</strong><span>Who I am and how I got here.</span></a></li>
-        <li><a href="experience.html"><div class="pic" data-chart="gantt"></div><strong>Experience</strong><span>Internships, research and teaching.</span></a></li>
-        <li><a href="projects.html"><div class="pic" data-chart="multiples"></div><strong>Projects</strong><span>Eleven builds across ML, analytics and software.</span></a></li>
-        <li><a href="contact.html"><div class="pic" data-chart="you"></div><strong>Contact</strong><span>The fastest ways to reach me.</span></a></li>
-      </ul>
-    </main>
-    <footer id="site-footer"></footer>
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>from tisya import Tisya
+
+me = Tisya()
+me</code></pre>
+          <div class="output" data-render="me-repr" hidden><span class="out-prompt"></span><div class="out-body"></div></div>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>me.education</code></pre>
+          <div class="output" data-render="education" hidden><span class="out-prompt"></span><div class="out-body"></div></div>
+        </div></div>
+
+        <div class="cell md"><div class="cell-body">
+          <h2>A model I like</h2>
+          <p>Recursive least squares updates a fitted line one data point at a time instead of refitting from scratch. In my research at Penn State I worked on making it robust to outliers. Click the plot to add a point and watch the line update.</p>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>from tisya.research import RecursiveLeastSquares
+
+rls = RecursiveLeastSquares()
+rls.fit(X, y)
+rls.plot(interactive=True)  # click to add points</code></pre>
+          <div class="output" data-render="plot" hidden><div class="out-body"><div class="plot-frame"><canvas id="fit-canvas" role="img" aria-label="Scatter plot with a fitted regression line. Click or tap the plot to add points; the line refits each time."></canvas></div>
+            <p class="plot-caption"><span class="eq" id="fit-eq">ŷ = …</span><button type="button" class="link-btn" id="fit-reset">Reset data</button></p></div></div>
+        </div></div>
+
+        <div class="cell md"><div class="cell-body">
+          <h2>Ask me something</h2>
+          <p>Type a question between the quotes and press Enter, or pick one of the suggestions.</p>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>me.ask(&quot;__INPUT__&quot;)</code></pre>
+          <div class="output" data-render="ask" hidden><div class="out-body"></div></div>
+        </div></div>
+
+        <div class="cell md"><div class="cell-body">
+          <h2>Explore the other notebooks</h2>
+        </div></div>
+
+        <div class="cell code"><div class="cell-body">
+          <pre class="src"><code>me.explore()</code></pre>
+          <div class="output" data-render="explore" hidden><div class="out-body"></div></div>
+        </div></div>
+      </main>
+    </div>
   </div>
   <script src="js/data.js"></script>
-  <script src="js/backdrop.js"></script>
-  <script src="js/site.js"></script>
   <script src="js/hero.js"></script>
+  <script src="js/notebook.js"></script>
 </body>
 </html>
