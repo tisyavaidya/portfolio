@@ -310,6 +310,23 @@
 )</pre>`;
     },
     education() { return dataFrame(["degree", "school", "dates"], S.education.map(e => [esc(e.degree), esc(e.school), esc(e.dates)])); },
+    now() {
+      const n = S.now, q = v => `<span class="tk-s">'${esc(v)}'</span>`;
+      return `<pre class="repr dict">{
+    <span class="tk-s">'term'</span>: ${q(n.term)},
+    <span class="tk-s">'studying'</span>: [${n.courses.map(q).join(", ")}],
+    <span class="tk-s">'learning'</span>: ${q(n.learning)},
+    <span class="tk-s">'looking_for'</span>: ${q(S.status.replace(/^Open to /, ""))},
+}</pre>`;
+    },
+    languages() { return `<pre class="repr">[${S.languages.map(l => `<span class="tk-s">'${esc(l)}'</span>`).join(", ")}]</pre>`; },
+    courses() {
+      let prev = null;
+      return dataFrame(["area", "code", "course"], S.courses.map(([a, c, t]) => {
+        const shown = a === prev ? "" : esc(a); prev = a;
+        return [shown ? `<strong>${shown}</strong>` : "", esc(c), esc(t)];
+      }));
+    },
     skills() { return dataFrame(["area", "tools"], S.skills.map(([k, v]) => [esc(k), esc(v)])); },
     hobbies() { return `<pre class="repr">[<span class="tk-s">'boxing'</span>, <span class="tk-s">'cooking'</span>, <span class="tk-s">'travel'</span>]</pre>`; },
     plot(out) { if (window.RLSPlot) window.RLSPlot.run(); return null; },

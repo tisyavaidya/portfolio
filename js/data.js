@@ -106,12 +106,44 @@ window.SITE = {
     }
   ],
 
+  // What I'm doing this term (the me.now() cell on the home page)
+  now: {
+    term: "Autumn 2026",
+    courses: ["Statistical Machine Learning", "Modelling for Combinatorial Optimisation"],
+    learning: "Swedish (A2)"
+  },
+
+  languages: ["English", "Hindi", "Marathi", "Swedish (learning, A2)"],
+
+  // Courses (the me.courses cell on the About page): [area, code, title]
+  courses: [
+    ["Uppsala (now)", "", "Statistical Machine Learning"],
+    ["Uppsala (now)", "", "Modelling for Combinatorial Optimisation"],
+    ["Machine learning and AI", "CMPSC 448", "Machine Learning and AI"],
+    ["Machine learning and AI", "DS 442", "Artificial Intelligence"],
+    ["Data science", "DS 340W", "Applied Data Sciences"],
+    ["Data science", "STAT 380", "Data Science Through Statistical Reasoning and Computation"],
+    ["Data science", "DS 220", "Data Management for Data Sciences"],
+    ["Data science", "CMPSC 410", "Programming Models for Big Data"],
+    ["Data science", "DS 435", "Data Ethics"],
+    ["Statistics", "STAT 414", "Introduction to Probability Theory"],
+    ["Statistics", "STAT 415", "Introduction to Mathematical Statistics"],
+    ["Statistics", "STAT 462", "Applied Regression Analysis"],
+    ["Statistics", "STAT 461", "Analysis of Variance"],
+    ["Mathematics", "MATH 484", "Linear Programming"],
+    ["Mathematics", "MATH 230", "Calculus and Vector Analysis"],
+    ["Mathematics", "MATH 220", "Matrices"],
+    ["Computer science", "CMPSC 465", "Data Structures and Algorithms"],
+    ["Computer science", "CMPSC 360", "Discrete Mathematics for Computer Science"],
+    ["Computer science", "CMPSC 221", "Object-Oriented Programming with Web-Based Applications"],
+    ["Computer science", "CMPSC 132", "Programming and Computation II: Data Structures"]
+  ],
+
   skills: [
-    ["Languages", "Python, SQL, R, Java, MATLAB"],
-    ["Machine learning", "scikit-learn, BERT and RoBERTa fine-tuning, ensembles, regression, classification"],
-    ["Data", "NumPy, Pandas, Matplotlib, Seaborn, web scraping"],
-    ["Vision and robotics", "OpenCV, ROS, stereo visual odometry"],
-    ["Analytics", "Tableau, Power BI, Excel"]
+    ["Languages", "Python, SQL"],
+    ["Data analysis", "NumPy, pandas, Matplotlib"],
+    ["Machine learning", "scikit-learn: regression, classification, model evaluation"],
+    ["Analytics", "Excel, Tableau, Power BI"]
   ],
 
   /* ------------------------------------------------------------ Projects */
@@ -283,8 +315,8 @@ window.SITE = {
         a: "Two projects at Penn State: making Recursive Least Squares models more robust to outliers (with Dr. Nilanjan Ray Chaudhuri), and stereo visual odometry for GNSS-denied navigation with the Autonomous Vehicle Team, using OpenCV, Python and ROS." },
       { keys: ["experience", "intern", "internships", "worked", "work", "company", "companies"],
         a: "I've interned at Digital Ipsum (data science, 2026), LTIMindtree (generative AI, 2024) and Tata Consultancy Services (data science, 2023). The Experience page has the details." },
-      { keys: ["skill", "skills", "language", "languages", "python", "sql", "tools", "stack", "tech", "tableau", "power bi", "excel", "java", "matlab", "pandas", "scikit", "know"],
-        a: "Mostly Python and SQL, plus R, Java and MATLAB. For ML and data: scikit-learn, Pandas, NumPy, Matplotlib and Seaborn, and transformer fine-tuning. For analytics: Tableau, Power BI and Excel." },
+      { keys: ["skill", "skills", "python", "sql", "tools", "stack", "tech", "tableau", "power bi", "excel", "java", "matlab", "pandas", "scikit", "know"],
+        a: "Python (NumPy, pandas, Matplotlib, scikit-learn) and SQL for data analysis and machine learning, plus Excel, Tableau and Power BI for analytics and dashboards." },
       { keys: ["teach", "teaching", "tutor", "tutoring", "assistant"],
         a: "I was a learning assistant at Penn State for CMPSC 221, Calculus 2 and Trigonometry, and a Python facilitator for the Women in Engineering Program." },
       { keys: ["generative", "genai", "gen ai", "image", "dall", "llm", "nlp"],
@@ -295,6 +327,10 @@ window.SITE = {
         a: "You can open my résumé from the Résumé button at the top of every page." },
       { keys: ["hobby", "hobbies", "fun", "free time", "outside", "boxing", "cook", "travel"],
         a: "Outside of data, I box, cook and travel." },
+      { keys: ["language", "languages", "speak", "swedish", "hindi", "marathi", "english"],
+        a: "I speak English, Hindi and Marathi, and I'm learning Swedish (currently A2)." },
+      { keys: ["course", "courses", "class", "classes", "taking", "semester", "term"],
+        a: "This term at Uppsala I'm taking Statistical Machine Learning and Modelling for Combinatorial Optimisation. The About page lists more of my courses." },
       { keys: ["where", "location", "live", "based", "sweden", "relocate"],
         a: "I'm based in Uppsala, Sweden." }
     ],
