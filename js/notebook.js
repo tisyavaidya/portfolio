@@ -283,7 +283,7 @@
   /* -------------------------------------------------- Output renderers */
   const toM = s => { const [y, m] = s.split("-").map(Number); return y * 12 + (m - 1); };
   const kindLabel = { work: "Work", research: "Research", teaching: "Teaching" };
-  const cats = { ml: "Machine learning", analytics: "Analytics", software: "Software" };
+  const cats = { ml: "Machine learning", analytics: "Analytics" };
 
   function dataFrame(cols, rows) {
     return `<div class="df-wrap"><table class="df"><thead><tr><th></th>${cols.map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead>
@@ -314,7 +314,7 @@
     hobbies() { return `<pre class="repr">[<span class="tk-s">'boxing'</span>, <span class="tk-s">'cooking'</span>, <span class="tk-s">'travel'</span>]</pre>`; },
     plot(out) { if (window.RLSPlot) window.RLSPlot.run(); return null; },
     explore() {
-      const blurb = { about: "Who I am and how I got here", experience: "Internships, research and teaching", projects: `${S.projects.length} projects across ML, analytics and software`, contact: "The quickest ways to reach me" };
+      const blurb = { about: "Who I am and how I got here", experience: "Internships, research and teaching", projects: `${S.projects.length} projects across machine learning and analytics`, contact: "The quickest ways to reach me" };
       return `<ul class="explore">${notebooks.slice(1).map(([id, href, name]) => `
         <li><a href="${href}">${nbIcon}<strong>${name}</strong><span>${blurb[id]}</span></a></li>`).join("")}</ul>`;
     },

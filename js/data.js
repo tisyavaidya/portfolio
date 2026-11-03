@@ -115,7 +115,7 @@ window.SITE = {
   ],
 
   /* ------------------------------------------------------------ Projects */
-  // category: "ml" | "analytics" | "software"
+  // category: "ml" | "analytics"
   // chart: the little picture on the card (bars, line, scatter, heatmap, pie, hist, grid, blocks, map, dashboard, curve)
   // link: GitHub URL, or "" if there isn't a public repo
   // Optional extras:
@@ -261,36 +261,6 @@ window.SITE = {
       images: [{"src": "assets/projects/tripvista-er.jpg", "caption": "Entity-relationship diagram, from the project slides"}],
       results: ["Six normalised tables (users, trips, destinations, activities, bookings and reviews), queried with four multi-table joins, five subqueries and three reporting views"]
     },
-    {
-      id: "cache", category: "software", chart: "blocks",
-      title: "Multi-level cache",
-      stack: ["Python", "Data structures"],
-      link: "https://github.com/tisyavaidya/Cache",
-      summary: "L1, L2 and L3 caches built from hash tables and linked lists.",
-      body: [
-        "A cache management system with three levels, built from hash tables and linked lists.",
-        "Optimised storage and retrieval, with eviction policies at each level."
-      ]
-    },
-    {
-      id: "course-scheduler", category: "software", chart: "grid",
-      title: "Course scheduler",
-      stack: ["Java", "OOP", "NetBeans"],
-      link: "https://github.com/tisyavaidya/Course-Scheduler",
-      summary: "Admin and student roles for scheduling courses by semester.",
-      body: [
-        "Course scheduling software with two kinds of user.",
-        "As admin you set up the database; students then schedule their courses by semester."
-      ]
-    },
-    {
-      id: "pizza", category: "software", chart: "pie",
-      title: "Pizza servings calculator",
-      stack: ["Java", "Swing"],
-      link: "https://github.com/tisyavaidya/Pizza-Servings-Calculator-GUI-",
-      summary: "A small GUI that works out servings from a pizza's size.",
-      body: ["A Java Swing app: enter the diameter of a round pizza and it calculates how many servings it makes."]
-    }
   ],
 
   /* ----------------------------------------------------------- Ask Tisya */
