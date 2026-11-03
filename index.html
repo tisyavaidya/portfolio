@@ -53,27 +53,15 @@ me</code></pre>
         </div></div>
 
         <div class="cell md"><div class="cell-body">
-          <h2>A model I like</h2>
-          <p>Recursive least squares updates a fitted line one data point at a time instead of refitting from scratch. In my research at Penn State I worked on making it robust to outliers. Click the plot to add a point and watch the line update.</p>
-        </div></div>
-
-        <div class="cell code"><div class="cell-body">
-          <pre class="src"><code>from tisya.research import RecursiveLeastSquares
-
-rls = RecursiveLeastSquares()
-rls.fit(X, y)
-rls.plot(interactive=True)  # click to add points</code></pre>
-          <div class="output" data-render="plot" hidden><div class="out-body"><div class="plot-frame"><canvas id="fit-canvas" role="img" aria-label="Scatter plot with a fitted regression line. Click or tap the plot to add points; the line refits each time."></canvas></div>
-            <p class="plot-caption"><span class="eq" id="fit-eq">ŷ = …</span><button type="button" class="link-btn" id="fit-reset">Reset data</button></p></div></div>
-        </div></div>
-
-        <div class="cell md"><div class="cell-body">
           <h2>Ask me something</h2>
-          <p>Type a question between the quotes and press Enter, or pick one of the suggestions.</p>
+          <p>A small retrieval demo, the "R" in RAG. Your question is tokenised, matched against snippets from this site with TF-IDF and cosine similarity, and the best matches are shown before the answer. Type a question between the quotes and press Enter, or pick a suggestion.</p>
         </div></div>
 
         <div class="cell code"><div class="cell-body">
-          <pre class="src"><code>me.ask(&quot;__INPUT__&quot;)</code></pre>
+          <pre class="src"><code>from tisya.rag import Retriever
+
+rag = Retriever(me.snippets(), embed=&quot;tf-idf&quot;, k=3)
+rag.ask(&quot;__INPUT__&quot;)</code></pre>
           <div class="output" data-render="ask" hidden><div class="out-body"></div></div>
         </div></div>
 
@@ -89,7 +77,6 @@ rls.plot(interactive=True)  # click to add points</code></pre>
     </div>
   </div>
   <script src="js/data.js"></script>
-  <script src="js/hero.js"></script>
   <script src="js/notebook.js"></script>
 </body>
 </html>

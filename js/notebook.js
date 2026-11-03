@@ -266,6 +266,7 @@
   const chart = (kind, label) => `<svg class="mini" viewBox="0 0 ${CW} ${CH}" ${label ? `role="img" aria-label="${esc(label)}"` : 'aria-hidden="true"'}>${(CHARTS[kind] || CHARTS.bars)()}</svg>`;
 
   /* --------------------------------------------------------- Ask Tisya */
+  // Curated answer by keyword match; null when nothing matches
   function answer(q) {
     const text = q.toLowerCase(), words = text.match(/[a-zé]+/g) || [];
     let best = null, bestScore = 0;
@@ -277,7 +278,91 @@
       });
       if (score > bestScore) { bestScore = score; best = item; }
     });
-    return best ? best.a : S.ask.fallback;
+    return best ? best.a : null;
+  }
+
+  /* ---------------------------------------- RAG: real TF-IDF retrieval */
+  const STOP = new Set("a an the and or but of to in on at for with by as is are was were be been being i me my you your yours do does did what which who whom how when why can could would should will shall have has had it its this that these those there their they them tell about any some much many more most so than too very just also into over under up down out if then not no yes please like know tell".split(" "));
+  function stem(w) {
+    if (w.length > 4 && w.endsWith("ies")) return w.slice(0, -3) + "y";
+    if (w.length > 5 && w.endsWith("ing")) return w.slice(0, -3);
+    if (w.length > 4 && w.endsWith("ed")) return w.slice(0, -2);
+    if (w.length > 3 && w.endsWith("s") && !w.endsWith("ss")) return w.slice(0, -1);
+    return w;
+  }
+  const tokenize = s => (s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").match(/[a-z0-9]+/g) || []).filter(w => !STOP.has(w) && w.length > 1).map(stem);
+
+  // The knowledge base: short snippets built from this site's own data
+  function buildDocs() {
+    const D = [];
+    const add = (src, text, extra = "") => D.push({ src, text, tokens: tokenize(text + " " + extra) });
+    S.education.forEach(e => add("education", `${e.degree}, ${e.school} (${e.dates})`, "study studying degree university education school master bachelor"));
+    const n = S.now;
+    add("now", `This term (${n.term}) I'm taking ${n.courses.join(" and ")}, going deeper into ${n.exploring.join(", ")}, and learning ${n.learning}.`, "now currently course class learning study");
+    add("status", `${S.status} in Sweden and Europe.`, "looking job role hire hiring internship available");
+    add("location", `Based in ${S.location}.`, "where live location city country based");
+    const kindWords = { work: "work job internship intern company experience", research: "research researcher experience", teaching: "teach teaching tutor assistant experience" };
+    S.experience.forEach(e => add("experience", `${e.role}, ${e.org} (${e.dates}): ${e.points.join(" ")}`, kindWords[e.kind] || ""));
+    S.projects.forEach(p => add("projects", `${p.title}: ${p.summary} Stack: ${p.stack.join(", ")}.`, "project built build"));
+    add("skills", `Skills: ${S.skills.map(([k, v]) => `${k}: ${v}`).join("; ")}.`, "skill skills tool tools stack tech know programming");
+    add("languages", `I speak ${S.languages.slice(0, -1).join(", ")} and ${S.languages[S.languages.length - 1]}.`, "language languages speak");
+    add("courses", `Courses: ${S.courses.map(c => c[1]).join(", ")}.`, "course courses class classes coursework");
+    S.funFacts.forEach(([k, v]) => add("fun facts", `${k.replace(/_/g, " ")}: ${[].concat(v).join(", ")}`, "hobby"));
+    add("contact", `Email ${S.email}, or find me on LinkedIn and GitHub.`, "contact reach email talk linkedin github hire");
+    // My own written answers are snippets too; their keywords are indexed but not shown
+    S.ask.answers.forEach(x => add("q&a", x.a, x.keys.join(" ")));
+    return D;
+  }
+  let RAG = null;
+  function rag() {
+    if (RAG) return RAG;
+    const docs = buildDocs(), N = docs.length, df = new Map();
+    docs.forEach(d => new Set(d.tokens).forEach(t => df.set(t, (df.get(t) || 0) + 1)));
+    const idf = t => Math.log((N + 1) / ((df.get(t) || 0) + 1)) + 1;
+    const vec = toks => {
+      const tf = new Map(); toks.forEach(t => tf.set(t, (tf.get(t) || 0) + 1));
+      const v = new Map(); let norm = 0;
+      tf.forEach((c, t) => { const w = (1 + Math.log(c)) * idf(t); v.set(t, w); norm += w * w; });
+      return { v, norm: Math.sqrt(norm) || 1 };
+    };
+    docs.forEach(d => d.vec = vec(d.tokens));
+    RAG = {
+      docs,
+      search(q, k = 3) {
+        const toks = tokenize(q), qv = vec(toks);
+        const hits = docs.map(d => {
+          let dot = 0; qv.v.forEach((w, t) => { const dw = d.vec.v.get(t); if (dw) dot += w * dw; });
+          return { d, score: dot / (qv.norm * d.vec.norm) };
+        }).filter(h => h.score > 0).sort((a, b) => b.score - a.score).slice(0, k);
+        return { toks, hits };
+      }
+    };
+    return RAG;
+  }
+  // Highlight query terms inside a snippet
+  function markTerms(text, toks) {
+    const set = new Set(toks);
+    return text.split(/(\s+)/).map(w => { const core = tokenize(w)[0]; return core && set.has(core) ? `<mark>${esc(w)}</mark>` : esc(w); }).join("");
+  }
+  function ragAnswer(q) {
+    const R = rag(), { toks, hits } = R.search(q, 3);
+    // The answer comes from the best retrieved snippet
+    // Prefer one of my written answers when it scores close to the best match
+    const top = hits[0], qa = hits.find(h => h.d.src === "q&a");
+    const use = qa && top && qa.score >= 0.7 * top.score ? qa : top;
+    if (use) use.used = true;
+    let a = S.ask.fallback;
+    if (use && use.score >= 0.1) a = use.d.src === "q&a" ? use.d.text : `Here's the most relevant thing I found: ${use.d.text}`;
+    const tokList = toks.length ? `[${toks.map(t => `<span class="tk-s">'${esc(t)}'</span>`).join(", ")}]` : `<span class="muted">[]  (no searchable words)</span>`;
+    const hitList = hits.length ? hits.map(h => `
+          <li class="rag-hit${h.used ? " used" : ""}"><span class="rag-score"><span class="rag-bar" style="--w:${Math.max(4, Math.round(h.score * 100))}%"></span><span class="rag-num">${h.score.toFixed(2)}</span></span><span class="rag-src">${esc(h.d.src)}</span><span class="rag-text">${markTerms(h.d.text.length > 170 ? h.d.text.slice(0, 167) + "…" : h.d.text, toks)}</span></li>`).join("")
+      : `<li class="muted small">No snippet shares a word with the question.</li>`;
+    return `<div class="rag">
+        <div class="rag-step" style="--d:0s"><p class="rag-h"><span class="rag-n">1</span> Tokenise the question</p><pre class="repr">${tokList}</pre></div>
+        <div class="rag-step" style="--d:.3s"><p class="rag-h"><span class="rag-n">2</span> Retrieve the top ${Math.min(3, hits.length) || 3} of ${R.docs.length} snippets <span class="muted">· TF-IDF, cosine similarity</span></p><ol class="rag-hits">${hitList}</ol></div>
+        <div class="rag-step" style="--d:.6s"><p class="rag-h"><span class="rag-n">3</span> Answer from the snippet marked “used”</p><p class="answer">${esc(a)}</p></div>
+      </div>
+      <p class="muted small rag-note">Retrieval runs live in your browser over snippets from this site. The answers are written by me, not generated by a language model.</p>`;
   }
 
   /* -------------------------------------------------- Output renderers */
@@ -341,7 +426,7 @@ const RENDER = {
       const q = ($(".ask-input", cell) || {}).value || "";
       const chips = `<div class="chips">${S.ask.suggestions.map(s => `<button type="button" class="chip" data-ask-fill="${esc(s)}">${esc(s)}</button>`).join("")}</div>`;
       if (!q.trim()) return `<p class="muted small">Nothing asked yet. Try one of these:</p>${chips}`;
-      return `<p class="answer">${esc(answer(q))}</p><p class="muted small" style="margin-top:10px">Or try another:</p>${chips}`;
+      return `${ragAnswer(q)}<p class="muted small" style="margin-top:10px">Or try another:</p>${chips}`;
     },
     gantt() {
       const items = S.experience.slice().sort(byEnd);

@@ -441,3 +441,25 @@ dialog[open] { animation: pop .2s ease-out; }
   .statusbar span:nth-child(2) { display: none; }
   .df th, .df td { padding: 5px 8px; }
 }
+
+/* Ask Tisya: retrieval steps (RAG) */
+.rag { display: grid; gap: 14px; }
+.rag-step { animation: ragIn .4s ease-out both; animation-delay: var(--d, 0s); }
+.rag-h { margin: 0 0 6px; font-size: .86rem; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.rag-h .muted { font-weight: 400; }
+.rag-n { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-size: .72rem; font-weight: 700; color: #fff; background: var(--blue); flex: none; }
+.rag .repr { margin: 0; }
+.rag-hits { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.rag-hit { display: grid; grid-template-columns: 120px 84px 1fr; gap: 10px; align-items: baseline; font-size: .86rem; line-height: 1.45; }
+.rag-score { position: relative; display: flex; align-items: center; gap: 8px; }
+.rag-bar { display: block; height: 8px; width: var(--w); max-width: 70px; border-radius: 4px; background: linear-gradient(90deg, var(--blue), var(--orange)); animation: ragBar .6s ease-out both; animation-delay: calc(var(--d, .3s) + .3s); transform-origin: left; }
+.rag-step:nth-child(2) .rag-bar { --d: .3s; }
+.rag-num { font-family: var(--mono, ui-monospace, monospace); font-size: .8rem; color: var(--tk-n); }
+.rag-src { font-family: var(--mono, ui-monospace, monospace); font-size: .76rem; color: var(--muted); }
+.rag-text mark { background: color-mix(in srgb, var(--orange) 28%, transparent); color: inherit; border-radius: 3px; padding: 0 2px; }
+.rag-note { margin-top: 10px; }
+@keyframes ragIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes ragBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (max-width: 640px) { .rag-hit { grid-template-columns: 80px 1fr; } .rag-hit .rag-text { grid-column: 1 / -1; } }
+@media (prefers-reduced-motion: reduce) { .rag-step, .rag-bar { animation: none; } }
+.rag-hit.used .rag-src::after { content: " ← used"; color: var(--orange); }
