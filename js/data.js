@@ -135,16 +135,8 @@ window.SITE = {
     ["Bachelor's (Penn State)", "Data Science Through Statistical Reasoning and Computation", "Data science"],
     ["Bachelor's (Penn State)", "Data Management for Data Sciences", "Data science"],
     ["Bachelor's (Penn State)", "Programming Models for Big Data", "Data science"],
-    ["Bachelor's (Penn State)", "Data Ethics", "Data science"],
-    ["Bachelor's (Penn State)", "Introduction to Probability Theory", "Statistics"],
     ["Bachelor's (Penn State)", "Introduction to Mathematical Statistics", "Statistics"],
-    ["Bachelor's (Penn State)", "Applied Regression Analysis", "Statistics"],
-    ["Bachelor's (Penn State)", "Analysis of Variance", "Statistics"],
-    ["Bachelor's (Penn State)", "Linear Programming", "Optimisation"],
-    ["Bachelor's (Penn State)", "Data Structures and Algorithms", "Computer science"],
-    ["Bachelor's (Penn State)", "Discrete Mathematics for Computer Science", "Computer science"],
-    ["Bachelor's (Penn State)", "Object-Oriented Programming with Web-Based Applications", "Computer science"],
-    ["Bachelor's (Penn State)", "Programming and Computation II: Data Structures", "Computer science"]
+    ["Bachelor's (Penn State)", "Applied Regression Analysis", "Statistics"]
   ],
 
   skills: [
