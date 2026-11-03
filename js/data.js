@@ -98,7 +98,7 @@ window.SITE = {
   education: [
     {
       school: "Uppsala University", place: "Uppsala, Sweden",
-      degree: "M.S. in Data Science, Machine Learning and Statistics", dates: "Aug 2026 – Jun 2028"
+      degree: "M.S. in Data Science, Machine Learning and Statistics track", dates: "Aug 2026 – Jun 2028"
     },
     {
       school: "The Pennsylvania State University", place: "University Park, USA",
@@ -315,7 +315,7 @@ window.SITE = {
     ],
     answers: [
       { keys: ["study", "studying", "master", "uppsala", "degree", "education", "university", "school"],
-        a: "I'm doing a master's in Data Science at Uppsala University (2026–2028), specialising in Machine Learning and Statistics. Before that I did a B.S. in Computational Data Science at Penn State, with minors in Maths and Statistics." },
+        a: "I'm doing a master's in Data Science at Uppsala University (2026–2028), on the Machine Learning and Statistics track. Before that I did a B.S. in Computational Data Science at Penn State, with minors in Maths and Statistics." },
       { keys: ["looking", "role", "job", "internship", "hire", "hiring", "available", "open"],
         a: "I'm looking for data science, machine learning and AI internships in Sweden and Europe. The quickest way to reach me is email: vaidyatisya19@gmail.com." },
       { keys: ["project", "projects", "built", "build", "portfolio"],
