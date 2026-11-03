@@ -18,7 +18,7 @@ window.SITE = {
     {
       id: "digital-ipsum", kind: "work", project: "marketing-roi",
       role: "Data Science Intern", org: "Digital Ipsum Pvt. Ltd.", place: "Remote",
-      start: "2026-06", end: "2026-08", dates: "Jun – Aug 2026",
+      start: "2026-06", end: "2026-08", dates: "Jun 2026 – Aug 2026",
       points: [
         "Designed the matching logic for a therapist–client matching system and integrated personalised recommendations into the company website.",
         "Built a model to predict digital marketing campaign ROI, covering preprocessing, exploratory analysis, feature selection and evaluation."
@@ -27,7 +27,7 @@ window.SITE = {
     {
       id: "avt", kind: "research", short: "Autonomous vehicles researcher",
       role: "Applied Researcher, Autonomous Vehicles", org: "Penn State Autonomous Vehicle Team", place: "University Park, USA",
-      start: "2025-01", end: "2025-05", dates: "Jan – May 2025",
+      start: "2025-01", end: "2025-05", dates: "Jan 2025 – May 2025",
       points: [
         "Researched stereo visual odometry for navigation without GNSS.",
         "Wrote feature extraction, pose estimation and trajectory reconstruction with OpenCV, Python and ROS.",
@@ -37,7 +37,7 @@ window.SITE = {
     {
       id: "rls", kind: "research",
       role: "Research Assistant", org: "Penn State, with Dr. Nilanjan Ray Chaudhuri", place: "University Park, USA",
-      start: "2024-05", end: "2024-08", dates: "May – Aug 2024",
+      start: "2024-05", end: "2024-08", dates: "May 2024 – Aug 2024",
       points: [
         "Worked on making Recursive Least Squares models in MATLAB more robust.",
         "Tested methods to reduce the impact of outliers, so the model's estimates stayed accurate and reliable."
@@ -46,7 +46,7 @@ window.SITE = {
     {
       id: "ltim", kind: "work",
       role: "Generative AI Intern", org: "LTIMindtree", place: "Mumbai, India",
-      start: "2024-05", end: "2024-07", dates: "May – Jul 2024",
+      start: "2024-05", end: "2024-07", dates: "May 2024 – Jul 2024",
       points: [
         "Implemented image generation with models like DALL·E and Gemini, producing high-resolution 3D images.",
         "Helped build and test instruction-based image editing, working from research papers.",
@@ -57,7 +57,7 @@ window.SITE = {
     {
       id: "tcs", kind: "work",
       role: "Data Science Intern", org: "Tata Consultancy Services", place: "Mumbai, India",
-      start: "2023-06", end: "2023-07", dates: "Jun – Jul 2023",
+      start: "2023-06", end: "2023-07", dates: "Jun 2023 – Jul 2023",
       points: [
         "Turned raw client data in Excel into clean, accessible data with BW/4HANA and Google Looker.",
         "Built a front end on SAP AppGyver and integrated it with the back end."
@@ -84,13 +84,13 @@ window.SITE = {
     {
       id: "la-trig", kind: "teaching", short: "Learning Assistant, Trigonometry",
       role: "Learning Assistant, Trigonometry and Analytic Geometry", org: "Penn State Eberly College of Science", place: "University Park, USA",
-      start: "2024-08", end: "2024-12", dates: "Aug – Dec 2024",
+      start: "2024-08", end: "2024-12", dates: "Aug 2024 – Dec 2024",
       points: ["Ran tutoring sessions and gave problem-solving support."]
     },
     {
       id: "la-calc", kind: "teaching", short: "Learning Assistant, MATH 141",
       role: "Learning Assistant, MATH 141: Calculus with Analytic Geometry II", org: "Penn State Eberly College of Science", place: "University Park, USA",
-      start: "2023-01", end: "2023-05", dates: "Jan – May 2023",
+      start: "2023-01", end: "2023-05", dates: "Jan 2023 – May 2023",
       points: ["Tutored students, using tools like Minitab and Wolfram Alpha."]
     }
   ],
