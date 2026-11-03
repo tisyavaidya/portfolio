@@ -49,9 +49,9 @@ window.SITE = {
       start: "2024-05", end: "2024-07", dates: "May 2024 – Jul 2024",
       points: [
         "Implemented image generation with models like DALL·E and Gemini, producing high-resolution 3D images.",
-        "Helped build and test instruction-based image editing, working from research papers.",
+        "Tested instruction-based image editing, working from research papers.",
         "Implemented background removal with Microsoft Azure AI services.",
-        "Automated product data collection from eBay with Scrapy, BeautifulSoup and Selenium."
+        "Facilitated product data collection from eBay with Scrapy, BeautifulSoup and Selenium."
       ]
     },
     {
