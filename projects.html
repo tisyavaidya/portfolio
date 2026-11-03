@@ -16,8 +16,9 @@
   <script>
     /* Follow the device setting; keep a theme chosen during this visit */
     (function () {
+      try { localStorage.removeItem("theme"); } catch (e) {}
+      window.name = (window.name || "").replace(/(?:^|;)theme=[^;]*/g, "");
       var t = null; try { t = sessionStorage.getItem("theme"); } catch (e) {}
-      if (!t) { var m = /(?:^|;)theme=(dark|light)/.exec(window.name || ""); if (m) t = m[1]; }
       if (!t) t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.dataset.theme = t;
     })();
@@ -25,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/notebook.css">
+  <link rel="stylesheet" href="css/notebook.css?v=15494342">
 </head>
 <body data-page="projects">
   <a class="skip" href="#notebook">Skip to notebook</a>
@@ -53,7 +54,7 @@ interact(projects.show, category=[&quot;all&quot;, &quot;ml&quot;, &quot;analyti
       </main>
     </div>
   </div>
-  <script src="js/data.js"></script>
-  <script src="js/notebook.js"></script>
+  <script src="js/data.js?v=7a0d462c"></script>
+  <script src="js/notebook.js?v=66064dac"></script>
 </body>
 </html>

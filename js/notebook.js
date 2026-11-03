@@ -19,13 +19,14 @@
   const store = key => key === "theme" ? sessionStorage : localStorage;
   function remember(key, val) {
     try { store(key).setItem(key, val); } catch (e) { /* storage unavailable */ }
+    if (key === "theme") return;  // the theme only lives in sessionStorage
     const re = new RegExp("(?:^|;)" + key + "=[^;]*");
     window.name = (window.name || "").replace(re, "") + ";" + key + "=" + val;
   }
   function recall(key) {
     let v = null;
     try { v = store(key).getItem(key); } catch (e) { /* storage unavailable */ }
-    if (v == null) { const m = new RegExp("(?:^|;)" + key + "=([^;]*)").exec(window.name || ""); if (m) v = m[1]; }
+    if (v == null && key !== "theme") { const m = new RegExp("(?:^|;)" + key + "=([^;]*)").exec(window.name || ""); if (m) v = m[1]; }
     return v;
   }
 
