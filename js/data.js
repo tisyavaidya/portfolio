@@ -142,7 +142,7 @@ window.SITE = {
       id: "loanlens", category: "ml", chart: "bars",
       title: "LoanLens: loan approval prediction",
       stack: ["Python", "scikit-learn", "Pandas", "Seaborn"],
-      link: "",
+      link: "https://github.com/tisyavaidya/Loan-Approval-Prediction-Model",
       summary: "Compared five classifiers on 500+ loan applications, reaching about 77% accuracy.",
       body: [
         "An end-to-end machine learning pipeline for predicting loan approval from 12+ financial and demographic features.",
@@ -167,7 +167,7 @@ window.SITE = {
       id: "jobpulse", category: "ml", chart: "hist",
       title: "JobPulse: job market scraper",
       stack: ["Python", "Requests", "BeautifulSoup", "Pandas"],
-      link: "",
+      link: "https://github.com/tisyavaidya/Web-Scrapping--Naukri.com",
       summary: "Scraped and structured 1,000+ Naukri.com job listings for market analysis.",
       body: [
         "A scraping pipeline that collects job title, company, location, experience and description from Naukri.com.",
@@ -178,7 +178,7 @@ window.SITE = {
       id: "mindscope", category: "analytics", chart: "dashboard",
       title: "MindScope: workplace mental health dashboard",
       stack: ["Tableau"],
-      link: "",
+      link: "https://github.com/tisyavaidya/Mental-Health-Analysis-Dashboard-Tableau",
       summary: "An interactive dashboard over 1,200+ workplace mental health survey responses.",
       body: [
         "Visualisations of demographic trends, workplace support and how people report mental health.",
@@ -189,7 +189,7 @@ window.SITE = {
       id: "niftypulse", category: "analytics", chart: "line",
       title: "NiftyPulse: Nifty 50 market analysis",
       stack: ["Power BI", "DAX", "Power Query"],
-      link: "",
+      link: "https://github.com/tisyavaidya/NiftyPulse-Nifty-50-Market-Analysis",
       summary: "Five years of Nifty 50 index data in an interactive Power BI dashboard.",
       body: [
         "Prepared the data in Power Query and wrote DAX measures for financial indicators.",
@@ -200,7 +200,7 @@ window.SITE = {
       id: "salesvision", category: "analytics", chart: "bars2",
       title: "SalesVision: sales analytics",
       stack: ["Excel", "Pivot tables"],
-      link: "",
+      link: "https://github.com/tisyavaidya/Sales-Dashboard-Excel",
       summary: "Pivot tables and slicers over 10,000+ sales records.",
       body: [
         "Tracks revenue, regional performance and product category trends.",
@@ -211,7 +211,7 @@ window.SITE = {
       id: "tripvista", category: "analytics", chart: "map",
       title: "TripVista: travel data analysis",
       stack: ["MySQL"],
-      link: "",
+      link: "https://github.com/tisyavaidya/Trip-Summary-SQL",
       summary: "A relational model of a travel booking system, queried for insight.",
       body: [
         "Models itineraries, bookings, destinations and reviews in a relational database.",

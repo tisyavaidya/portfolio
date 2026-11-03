@@ -17,6 +17,7 @@
     /* Apply the saved or system theme before the page paints */
     (function () {
       var t = null; try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (!t) { var m = /(?:^|;)theme=(dark|light)/.exec(window.name || ""); if (m) t = m[1]; }
       if (!t) t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.dataset.theme = t;
     })();

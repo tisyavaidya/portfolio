@@ -5,60 +5,62 @@
 
 :root {
   color-scheme: light;
-  --bg: #D9E2E9;
-  --contour: #5F7890;
-  --card: rgba(249, 251, 252, 0.8);
+  --bg: #EEE3E8;
+  --contour: #9C7590;
+  --card: rgba(251, 246, 248, 0.8);
   --card-edge: rgba(255, 255, 255, 0.75);
-  --card-shadow: 0 40px 90px -40px rgba(20, 40, 60, 0.45);
-  --surface: rgba(255, 255, 255, 0.62);
+  --card-shadow: 0 40px 90px -40px rgba(60, 20, 70, 0.4);
+  --surface: rgba(255, 255, 255, 0.6);
   --surface-hover: rgba(255, 255, 255, 0.92);
-  --ink: #15202B;
-  --muted: #56636F;
-  --rule: rgba(21, 32, 43, 0.1);
-  --blue: #1F77B4;          /* matplotlib C0 */
-  --blue-text: #145B8D;
-  --orange: #EF7A12;        /* matplotlib C1 */
-  --green: #2A9136;         /* matplotlib C2 */
+  --ink: #1E0B33;
+  --muted: #66546F;
+  --rule: rgba(30, 11, 51, 0.1);
+  /* Plasma colormap: violet, coral, amber */
+  --blue: #6A00A8;          /* main series (violet) */
+  --blue-text: #5B0091;
+  --orange: #E0505A;        /* accent (coral) */
+  --green: #D9770B;         /* third series (amber) */
   --on-solid: #FFFFFF;
-  --solid: #15202B;
-  --solid-hover: #2B3948;
-  --badge-bg: rgba(42, 145, 54, 0.1);
-  --badge-ink: #1E6E29;
+  --solid: #1E0B33;
+  --solid-hover: #35204A;
+  --badge-bg: rgba(106, 0, 168, 0.08);
+  --badge-ink: #5B0091;
   --plot-bg: #FFFFFF;
-  --plot-grid: #E8EDF1;
-  --plot-axis: #A3AEB8;
-  --plot-resid: #C7CFD7;
-  --dialog-bg: #FBFCFD;
+  --plot-grid: #F1E7ED;
+  --plot-axis: #B8A5B3;
+  --plot-resid: #DDCBD6;
+  --dialog-bg: #FCF8FA;
 
   --font: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #0C141E;
-  --contour: #4F7397;
-  --card: rgba(17, 25, 36, 0.78);
-  --card-edge: rgba(255, 255, 255, 0.08);
-  --card-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.8);
-  --surface: rgba(255, 255, 255, 0.045);
-  --surface-hover: rgba(255, 255, 255, 0.09);
-  --ink: #E8EDF3;
-  --muted: #9AA8B6;
-  --rule: rgba(255, 255, 255, 0.1);
-  --blue: #5AA9E6;
-  --blue-text: #8DC5F1;
-  --orange: #FF9A3D;
-  --green: #5FC665;
-  --on-solid: #0F1722;
-  --solid: #E8EDF3;
+  --bg: #0E0C12;
+  --contour: #3B3150;
+  --card: rgba(24, 21, 31, 0.84);
+  --card-edge: rgba(255, 255, 255, 0.07);
+  --card-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.85);
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --ink: #F2EEF6;
+  --muted: #A9A1B4;
+  --rule: rgba(255, 255, 255, 0.09);
+  /* Bright end of the Plasma colormap */
+  --blue: #EC6A7D;          /* main series (coral-pink) */
+  --blue-text: #F59AB0;
+  --orange: #FCC438;        /* accent (yellow) */
+  --green: #B77AF0;         /* third series (light violet) */
+  --on-solid: #16131C;
+  --solid: #F2EEF6;
   --solid-hover: #FFFFFF;
-  --badge-bg: rgba(95, 198, 101, 0.12);
-  --badge-ink: #8BDB8F;
-  --plot-bg: #111A26;
-  --plot-grid: #1E2A38;
-  --plot-axis: #4A5A6B;
-  --plot-resid: #344355;
-  --dialog-bg: #131C28;
+  --badge-bg: rgba(252, 196, 56, 0.12);
+  --badge-ink: #FCD46A;
+  --plot-bg: #15121B;
+  --plot-grid: #25212E;
+  --plot-axis: #4E465C;
+  --plot-resid: #3A3446;
+  --dialog-bg: #18151F;
 }
 
 /* ------------------------------------------------------------------ Base */
@@ -117,7 +119,7 @@ main { padding: 56px 64px 64px; }
   font-size: .78rem; line-height: 1; padding: 4px 9px 4px 8px; border-radius: 999px;
   background: var(--badge-bg); color: var(--badge-ink);
 }
-.pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+.pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); }
 
 .nav { display: flex; gap: 4px; margin: 0 auto; }
 .nav a { color: var(--muted); text-decoration: none; padding: 7px 12px; border-radius: 999px; font-size: .95rem; }
@@ -315,7 +317,7 @@ dialog[open] { animation: pop .22s ease-out; }
 .msg { max-width: 85%; padding: 10px 14px; border-radius: 16px; font-size: .97rem; line-height: 1.45; }
 .msg.me { align-self: flex-start; background: var(--surface-hover); border: 1px solid var(--rule); border-bottom-left-radius: 5px; }
 .msg.you { align-self: flex-end; background: var(--blue); color: #fff; border-bottom-right-radius: 5px; }
-:root[data-theme="dark"] .msg.you { color: #0C141E; }
+:root[data-theme="dark"] .msg.you { color: #16131C; }
 .msg.typing { color: var(--muted); letter-spacing: .2em; }
 .ask-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 22px 12px; }
 .ask-chips .chip { font-size: .85rem; padding: 6px 12px; }

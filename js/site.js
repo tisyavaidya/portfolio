@@ -11,11 +11,21 @@
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
   /* ------------------------------------------------------------ Theme */
-  function storedTheme() { try { return localStorage.getItem("theme"); } catch (e) { return null; } }
+  // The choice is kept in localStorage, and also in window.name, which survives page changes
+  // in the same tab even where storage is blocked (private modes, embedded previews).
+  function storedTheme() {
+    let t = null;
+    try { t = localStorage.getItem("theme"); } catch (e) { /* storage unavailable */ }
+    if (!t) { const m = /(?:^|;)theme=(dark|light)/.exec(window.name || ""); if (m) t = m[1]; }
+    return t;
+  }
   function currentTheme() { return document.documentElement.dataset.theme === "dark" ? "dark" : "light"; }
   function setTheme(t, remember) {
     document.documentElement.dataset.theme = t;
-    if (remember) { try { localStorage.setItem("theme", t); } catch (e) { /* storage unavailable */ } }
+    if (remember) {
+      try { localStorage.setItem("theme", t); } catch (e) { /* storage unavailable */ }
+      window.name = (window.name || "").replace(/(?:^|;)theme=(dark|light)/, "") + ";theme=" + t;
+    }
     document.dispatchEvent(new CustomEvent("themechange", { detail: t }));
   }
   // Follow the system setting until the visitor makes a choice
