@@ -15,7 +15,7 @@
   /* ------------------------------------------------------------- Memory */
   // Theme and "already ran this page" are kept in localStorage, with window.name
   // as a fallback that survives page changes in the same tab when storage is blocked.
-  // The theme lives in sessionStorage so each new visit starts in light mode
+  // The theme lives in sessionStorage: each new visit follows the device setting
   const store = key => key === "theme" ? sessionStorage : localStorage;
   function remember(key, val) {
     try { store(key).setItem(key, val); } catch (e) { /* storage unavailable */ }
@@ -36,6 +36,9 @@
     if (save) remember("theme", t);
     document.dispatchEvent(new CustomEvent("themechange", { detail: t }));
   }
+
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  if (mq.addEventListener) mq.addEventListener("change", e => { if (!recall("theme")) setTheme(e.matches ? "dark" : "light", false); });
 
   /* -------------------------------------------------------------- Shell */
   const notebooks = [
