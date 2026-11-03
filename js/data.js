@@ -65,16 +65,16 @@ window.SITE = {
     },
     {
       id: "la-221", kind: "teaching", short: "Learning Assistant, CMPSC 221",
-      role: "Learning Assistant, CMPSC 221", org: "Penn State", place: "University Park, USA",
+      role: "Learning Assistant, CMPSC 221: Object-Oriented Programming with Web-Based Applications", org: "Penn State", place: "University Park, USA",
       start: "2023-08", end: "2025-05", dates: "Aug 2023 – May 2025",
       points: [
-        "Supported students in Object-Oriented Programming with Web-Based Applications.",
+        "Helped students understand the course concepts.",
         "Refined course content with the professor and TAs, and graded exams, assignments and projects."
       ]
     },
     {
       id: "wie", kind: "teaching", short: "Facilitator, Women in Engineering",
-      role: "Facilitator, Women in Engineering Program", org: "Penn State", place: "University Park, USA",
+      role: "Python Facilitator, CMPSC 131: Programming and Computation I", org: "Penn State Women in Engineering Program", place: "University Park, USA",
       start: "2022-08", end: "2025-05", dates: "Aug 2022 – May 2025",
       points: [
         "Wrote and taught lesson plans for CMPSC 131 (Python).",
@@ -88,8 +88,8 @@ window.SITE = {
       points: ["Ran tutoring sessions and gave problem-solving support."]
     },
     {
-      id: "la-calc", kind: "teaching", short: "Learning Assistant, Calculus 2",
-      role: "Learning Assistant, Calculus 2", org: "Penn State Eberly College of Science", place: "University Park, USA",
+      id: "la-calc", kind: "teaching", short: "Learning Assistant, MATH 141",
+      role: "Learning Assistant, MATH 141: Calculus with Analytic Geometry II", org: "Penn State Eberly College of Science", place: "University Park, USA",
       start: "2023-01", end: "2023-05", dates: "Jan – May 2023",
       points: ["Tutored students, using tools like Minitab and Wolfram Alpha."]
     }
