@@ -48,10 +48,10 @@ window.SITE = {
       role: "Generative AI Intern", org: "LTIMindtree", place: "Mumbai, India",
       start: "2024-05", end: "2024-07", dates: "May 2024 – Jul 2024",
       points: [
-        "Implemented image generation with models like DALL·E and Gemini, producing high-resolution 3D images.",
-        "Tested instruction-based image editing, working from research papers.",
-        "Implemented background removal with Microsoft Azure AI services.",
-        "Facilitated product data collection from eBay with Scrapy, BeautifulSoup and Selenium."
+        "Image generation: researched and implemented image generation techniques using models like DALL·E and Gemini, creating high-resolution 3D images.",
+        "Instruction-based image editing: analysed research papers and contributed to developing and testing code for instruction-based image editing, enhancing image manipulation capabilities.",
+        "Background removal: implemented and tested background removal using Microsoft Azure AI services.",
+        "Web scraping automation: extracted eBay product details with Scrapy, BeautifulSoup and Selenium, streamlining data collection."
       ]
     },
     {

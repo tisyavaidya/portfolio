@@ -294,7 +294,7 @@
       <li id="${e.id}">
         <p class="when">${esc(e.dates)}</p>
         <div><h3>${esc(e.role)}</h3><p class="muted">${esc(e.org)}, ${esc(e.place)}</p>
-        <ul>${e.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
+        <ul>${e.points.map(p => { const m = p.match(/^([A-Z][^:]{2,40}): (.*)$/); return `<li>${m ? `<strong>${esc(m[1])}:</strong> ${esc(m[2])}` : esc(p)}</li>`; }).join("")}</ul>
         ${e.project ? `<p class="role-link"><a href="projects.html#${e.project}">See the project from this internship</a></p>` : ""}</div>
       </li>`).join("")}</ol>`;
   }
