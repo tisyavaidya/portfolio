@@ -16,7 +16,7 @@ window.SITE = {
   // start / end: "YYYY-MM"
   experience: [
     {
-      id: "digital-ipsum", kind: "work",
+      id: "digital-ipsum", kind: "work", project: "marketing-roi",
       role: "Data Science Intern", org: "Digital Ipsum Pvt. Ltd.", place: "Remote",
       start: "2026-06", end: "2026-08", dates: "Jun – Aug 2026",
       points: [
@@ -140,6 +140,29 @@ window.SITE = {
       data: {"type": "heatmap", "labels": ["hate", "offensive", "neither"], "values": [[0.47, 0.49, 0.05], [0.03, 0.96, 0.01], [0.01, 0.06, 0.93]], "title": "Ensemble confusion matrix (row share)"},
       notebook: "https://nbviewer.org/github/tisyavaidya/DS340W--Project/blob/main/stacked_model.ipynb",
       images: [{"src": "assets/projects/hate-speech-confusion.jpg", "caption": "Confusion matrix of the ensemble (averaging probabilities), from stacked_model.ipynb"}]
+    },
+    {
+      id: "marketing-roi", category: "ml", chart: "bars",
+      title: "Marketing campaign ROI prediction",
+      stack: ["Python", "scikit-learn", "Gradient Boosting", "Pandas"],
+      link: "https://github.com/tisyavaidya/digitalipsum-internship",
+      notebook: "https://nbviewer.org/github/tisyavaidya/digitalipsum-internship/blob/main/marketing-roi-prediction/predictive_analytics_digital_marketing_roi.ipynb",
+      summary: "Built during my Digital Ipsum internship: predicting the ROI of 20,000 digital marketing campaigns.",
+      data: {"type": "bars", "labels": ["GBoost", "Forest", "Lasso", "Linear", "AdaBoost", "Tree"], "values": [0.75, 0.73, 0.66, 0.66, 0.62, 0.49], "highlight": 0, "title": "R² on held-out campaigns, by model"},
+      body: [
+        "Part of my data science internship at Digital Ipsum: predict the return on investment of a digital marketing campaign from its setup and performance, so budget can go to the campaigns likely to pay off.",
+        "Built a scikit-learn pipeline (imputation, scaling and one-hot encoding into 41 features), compared seven regressors on 16,000 training and 4,000 test campaigns, and tuned the best one with a 5-fold grid search.",
+        "Checked the model with feature importance, actual-vs-predicted and residual plots."
+      ],
+      results: [
+        "Tuned Gradient Boosting explained 75% of the variance in ROI on unseen campaigns (R² 0.747, MAE 1.50), with stable cross-validation (0.748 ± 0.006)",
+        "Tree ensembles clearly beat linear models (R² 0.74 against 0.66), pointing to non-linear effects",
+        "Acquisition cost dominated, at 86% of feature importance, followed far behind by customer segment and conversions"
+      ],
+      images: [
+        {"src": "assets/projects/marketing-roi-actual-vs-predicted.jpg", "caption": "Actual vs predicted ROI for the tuned Gradient Boosting model"},
+        {"src": "assets/projects/marketing-roi-features.jpg", "caption": "Top 15 features influencing ROI"}
+      ]
     },
     {
       id: "loanlens", category: "ml", chart: "bars",

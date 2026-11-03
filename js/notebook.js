@@ -222,7 +222,7 @@
   };
   // Charts drawn from a project's real numbers (data.js "data" field)
   function realChart(d, label) {
-    const W = 320, H = 190, fmt = v => (d.prefix || "") + (Number.isInteger(v) ? v : v.toFixed(1)) + (d.unit || "");
+    const W = 320, H = 190, fmt = v => (d.prefix || "") + (Number.isInteger(v) ? v : Math.abs(v) < 1 ? v.toFixed(2) : v.toFixed(1)) + (d.unit || "");
     const aria = `role="img" aria-label="${esc(label || d.title || "")}"`;
     let s = "";
     if (d.type === "heatmap") {
@@ -294,7 +294,8 @@
       <li id="${e.id}">
         <p class="when">${esc(e.dates)}</p>
         <div><h3>${esc(e.role)}</h3><p class="muted">${esc(e.org)}, ${esc(e.place)}</p>
-        <ul>${e.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul></div>
+        <ul>${e.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
+        ${e.project ? `<p class="role-link"><a href="projects.html#${e.project}">See the project from this internship</a></p>` : ""}</div>
       </li>`).join("")}</ol>`;
   }
 

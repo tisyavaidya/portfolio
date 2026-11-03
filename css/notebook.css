@@ -340,6 +340,7 @@ pre { margin: 0; }
 .roles ul { margin: 8px 0 0; padding-left: 1.1em; }
 .roles ul li + li { margin-top: 4px; }
 .roles ul li::marker { color: var(--blue); }
+.role-link { margin-top: 8px; font-size: .92rem; }
 
 /* Projects */
 .widget { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-bottom: 16px; font-size: .86rem; }
