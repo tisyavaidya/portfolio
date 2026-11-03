@@ -2,7 +2,7 @@
 
 Personal website of Tisya Vaidya, data scientist and master's student in Machine Learning and Statistics at Uppsala University.
 
-The site looks and works like a JupyterLab notebook: each page is a notebook, cells run when the page opens, and visitors can re-run cells, restart the kernel, or ask questions with `me.ask("...")`. Plain HTML, CSS and JavaScript on GitHub Pages; no build step.
+The site looks and works like a JupyterLab notebook: each page is a notebook, cells run when the page opens, and visitors can re-run cells, restart the kernel, or ask questions with `me.ask("...")` on the home notebook. Plain HTML, CSS and JavaScript on GitHub Pages; no build step.
 
 ## Editing
 

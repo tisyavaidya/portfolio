@@ -68,7 +68,6 @@
       <nav class="menu" aria-label="Notebook actions">
         <button type="button" data-action="run-all">Run all</button>
         <button type="button" data-action="restart">Restart kernel</button>
-        <button type="button" data-open-ask>Ask Tisya</button>
         <a href="${S.resume}" target="_blank" rel="noopener">Résumé</a>
       </nav>
       <button type="button" class="sigmoid" id="theme-toggle" aria-pressed="false" aria-label="Dark theme">
@@ -451,7 +450,6 @@
     const p = e.target.closest("[data-project]");
     if (p) { openProject(p.dataset.project); return; }
     if (e.target.closest("#copy-email")) copyEmail(e.target.closest("#copy-email"));
-    if (e.target.closest("[data-open-ask]")) { e.preventDefault(); openAsk(); }
   });
 
   async function copyEmail(btn) {
@@ -484,31 +482,6 @@
   }
   dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
   dlg.addEventListener("close", () => { if (location.hash) history.replaceState(null, "", location.pathname + location.search); });
-
-  /* ------------------------------------------------ Ask Tisya console */
-  const ask = document.createElement("dialog");
-  ask.className = "ask"; ask.setAttribute("aria-labelledby", "ask-title");
-  ask.innerHTML = `
-    <div class="ask-head"><img src="assets/avatar.jpg" alt="" width="36" height="36">
-      <div><h2 id="ask-title">Ask Tisya</h2><p>Answers I've written myself, matched to your question.</p></div>
-      <button type="button" class="close" aria-label="Close">×</button></div>
-    <div class="ask-log" aria-live="polite"></div>
-    <div class="chips ask-chips">${S.ask.suggestions.map(s => `<button type="button" class="chip">${esc(s)}</button>`).join("")}</div>
-    <form class="ask-form"><span class="ps" aria-hidden="true">&gt;&gt;&gt;</span>
-      <label class="sr-only" for="ask-console">Your question</label>
-      <input id="ask-console" type="text" autocomplete="off" placeholder="me.ask(&quot;…&quot;)"><button type="submit" class="btn solid">Run</button></form>`;
-  document.body.appendChild(ask);
-  const log = $(".ask-log", ask), askIn = $("#ask-console", ask);
-  function consoleQ(q) {
-    q = q.trim(); if (!q) return;
-    log.insertAdjacentHTML("beforeend", `<p class="c-in"><span class="ps">&gt;&gt;&gt;</span> me.ask(<span class="tk-s">"${esc(q)}"</span>)</p><p class="c-out">${esc(answer(q))}</p>`);
-    log.scrollTop = log.scrollHeight;
-  }
-  $(".ask-chips", ask).addEventListener("click", e => { const b = e.target.closest(".chip"); if (b) consoleQ(b.textContent); });
-  $(".ask-form", ask).addEventListener("submit", e => { e.preventDefault(); consoleQ(askIn.value); askIn.value = ""; askIn.focus(); });
-  $(".close", ask).addEventListener("click", () => ask.close());
-  ask.addEventListener("click", e => { if (e.target === ask) ask.close(); });
-  function openAsk() { if (typeof ask.showModal === "function") ask.showModal(); else ask.setAttribute("open", ""); askIn.focus(); }
 
   /* -------------------------------------------------------------- Start */
   // First visit to a notebook in this tab runs cell by cell; later visits show results at once.
