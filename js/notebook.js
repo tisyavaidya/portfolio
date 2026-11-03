@@ -15,14 +15,16 @@
   /* ------------------------------------------------------------- Memory */
   // Theme and "already ran this page" are kept in localStorage, with window.name
   // as a fallback that survives page changes in the same tab when storage is blocked.
+  // The theme lives in sessionStorage so each new visit starts in light mode
+  const store = key => key === "theme" ? sessionStorage : localStorage;
   function remember(key, val) {
-    try { localStorage.setItem(key, val); } catch (e) { /* storage unavailable */ }
+    try { store(key).setItem(key, val); } catch (e) { /* storage unavailable */ }
     const re = new RegExp("(?:^|;)" + key + "=[^;]*");
     window.name = (window.name || "").replace(re, "") + ";" + key + "=" + val;
   }
   function recall(key) {
     let v = null;
-    try { v = localStorage.getItem(key); } catch (e) { /* storage unavailable */ }
+    try { v = store(key).getItem(key); } catch (e) { /* storage unavailable */ }
     if (v == null) { const m = new RegExp("(?:^|;)" + key + "=([^;]*)").exec(window.name || ""); if (m) v = m[1]; }
     return v;
   }
@@ -34,8 +36,6 @@
     if (save) remember("theme", t);
     document.dispatchEvent(new CustomEvent("themechange", { detail: t }));
   }
-  const mq = window.matchMedia("(prefers-color-scheme: dark)");
-  if (mq.addEventListener) mq.addEventListener("change", e => { if (!recall("theme")) setTheme(e.matches ? "dark" : "light", false); });
 
   /* -------------------------------------------------------------- Shell */
   const notebooks = [

@@ -14,11 +14,11 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <script>
-    /* Apply the saved or system theme before the page paints */
+    /* Light by default; keep a theme chosen during this visit */
     (function () {
-      var t = null; try { t = localStorage.getItem("theme"); } catch (e) {}
+      var t = null; try { t = sessionStorage.getItem("theme"); } catch (e) {}
       if (!t) { var m = /(?:^|;)theme=(dark|light)/.exec(window.name || ""); if (m) t = m[1]; }
-      if (!t) t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      if (!t) t = "light";
       document.documentElement.dataset.theme = t;
     })();
   </script>
