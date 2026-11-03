@@ -309,6 +309,9 @@ function pyDict(pairs) {
   return `<pre class="repr dict">{\n${pairs.map(([k, v]) => `    <span class="tk-s">'${esc(k)}'</span>: ${pyVal(v)},`).join("\n")}\n}</pre>`;
 }
 
+// Most recently ended first; ties go to the later start
+const byEnd = (a, b) => (b.end.localeCompare(a.end)) || (b.start.localeCompare(a.start));
+
 const RENDER = {
     "me-repr"() {
       return `<pre class="repr">Tisya(
@@ -341,7 +344,7 @@ const RENDER = {
       return `<p class="answer">${esc(answer(q))}</p><p class="muted small" style="margin-top:10px">Or try another:</p>${chips}`;
     },
     gantt() {
-      const items = S.experience.slice().sort((a, b) => toM(a.start) - toM(b.start));
+      const items = S.experience.slice().sort(byEnd);
       const lo = Math.min(...items.map(i => toM(i.start))) - 1, hi = Math.max(...items.map(i => toM(i.end))) + 2;
       const pct = m => ((m - lo) / (hi - lo)) * 100;
       const years = []; for (let y = Math.ceil(lo / 12); y * 12 <= hi; y++) years.push(y);
@@ -357,8 +360,8 @@ const RENDER = {
         <p class="g-legend">${Object.keys(kindLabel).map(k => `<span><i class="k-${k}"></i>${kindLabel[k]}</span>`).join("")}</p>
       </div>`;
     },
-    "work-research"() { return roleList(S.experience.filter(e => e.kind !== "teaching").sort((a, b) => toM(b.start) - toM(a.start))); },
-    teaching() { return roleList(S.experience.filter(e => e.kind === "teaching").sort((a, b) => toM(b.start) - toM(a.start))); },
+    "work-research"() { return roleList(S.experience.filter(e => e.kind !== "teaching").sort(byEnd)); },
+    teaching() { return roleList(S.experience.filter(e => e.kind === "teaching").sort(byEnd)); },
     "project-counts"() {
       const counts = {}; S.projects.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
       const keys = Object.keys(cats);

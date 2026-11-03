@@ -73,7 +73,7 @@ window.SITE = {
       ]
     },
     {
-      id: "wie", kind: "teaching", short: "Facilitator, Women in Engineering",
+      id: "wie", kind: "teaching", short: "Python Facilitator, CMPSC 131",
       role: "Python Facilitator, CMPSC 131: Programming and Computation I", org: "Penn State Women in Engineering Program", place: "University Park, USA",
       start: "2022-08", end: "2025-05", dates: "Aug 2022 – May 2025",
       points: [
@@ -82,8 +82,8 @@ window.SITE = {
       ]
     },
     {
-      id: "la-trig", kind: "teaching", short: "Learning Assistant, Trigonometry",
-      role: "Learning Assistant, Trigonometry and Analytic Geometry", org: "Penn State Eberly College of Science", place: "University Park, USA",
+      id: "la-trig", kind: "teaching", short: "Learning Assistant, MATH 041",
+      role: "Learning Assistant, MATH 041: Trigonometry and Analytic Geometry", org: "Penn State Eberly College of Science", place: "University Park, USA",
       start: "2024-08", end: "2024-12", dates: "Aug 2024 – Dec 2024",
       points: ["Ran tutoring sessions and gave problem-solving support."]
     },
