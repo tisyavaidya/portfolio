@@ -4,7 +4,7 @@
 
 window.SITE = {
   name: "Tisya Vaidya",
-  status: "Open to data science and ML internships",
+  status: "Open to data science, ML and AI internships",
   email: "vaidyatisya19@gmail.com",
   linkedin: "https://www.linkedin.com/in/tisya-vaidya/",
   github: "https://github.com/tisyavaidya",
@@ -306,7 +306,7 @@ window.SITE = {
       { keys: ["study", "studying", "master", "uppsala", "degree", "education", "university", "school"],
         a: "I'm doing a master's in Data Science at Uppsala University (2026–2028), specialising in Machine Learning and Statistics. Before that I did a B.S. in Computational Data Science at Penn State, with minors in Maths and Statistics." },
       { keys: ["looking", "role", "job", "internship", "hire", "hiring", "available", "open"],
-        a: "I'm looking for data science and machine learning internships in Sweden and Europe. The quickest way to reach me is email: vaidyatisya19@gmail.com." },
+        a: "I'm looking for data science, machine learning and AI internships in Sweden and Europe. The quickest way to reach me is email: vaidyatisya19@gmail.com." },
       { keys: ["project", "projects", "built", "build", "portfolio"],
         a: "Probably my hate speech detection project: an ensemble of fine-tuned BERT and RoBERTa that reached 93% accuracy and lifted macro F1 from 0.70 to 0.79. All my projects are on the Projects page." },
       { keys: ["research", "autonomous", "vehicle", "odometry", "rls", "least squares", "robotics"],
