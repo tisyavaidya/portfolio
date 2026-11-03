@@ -296,6 +296,20 @@ pre { margin: 0; }
 .mini .tl { fill: #fff; }
 .mini .td { fill: var(--ink); }
 
+.mini.real text { font: 500 10.5px var(--sans); }
+.mini .lab { fill: var(--muted); text-anchor: middle; }
+.mini .lab.end, .mini .end { text-anchor: end; }
+.mini .val { fill: var(--ink); font-weight: 700; text-anchor: middle; }
+.mini .cap { fill: var(--muted); text-anchor: middle; font-style: italic; }
+.thumb.has-img, .pd-thumb.has-img { padding: 0; overflow: hidden; background: #fff; }
+.thumb-img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top center; }
+.pd-thumb.has-img .thumb-img { aspect-ratio: auto; max-height: 340px; object-fit: contain; background: #fff; }
+.pd-cap { text-align: center; color: var(--muted); font-size: .82rem; margin-top: 6px; }
+.pd-fig { margin: 12px 0 0; }
+.pd-fig img { width: 100%; max-height: 380px; object-fit: contain; background: #fff; border: 1px solid var(--rule); border-radius: 6px; }
+.pd-fig figcaption { font-size: .84rem; color: var(--muted); margin-top: 6px; }
+.pd-link { display: flex; flex-wrap: wrap; gap: 8px; }
+
 /* Gantt */
 .gantt { border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px 12px; background: var(--paper); }
 .g-axis { position: relative; height: 18px; margin-left: 230px; font-size: .78rem; color: var(--muted); font-family: var(--mono); }

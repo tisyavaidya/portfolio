@@ -220,6 +220,49 @@
       return s + `<path class="la" d="M134,108L150,100L166,104L182,88L198,92L216,78"/>`;
     }
   };
+  // Charts drawn from a project's real numbers (data.js "data" field)
+  function realChart(d, label) {
+    const W = 320, H = 190, fmt = v => (d.prefix || "") + (Number.isInteger(v) ? v : v.toFixed(1)) + (d.unit || "");
+    const aria = `role="img" aria-label="${esc(label || d.title || "")}"`;
+    let s = "";
+    if (d.type === "heatmap") {
+      const n = d.labels.length, cell = 44, x0 = 120, y0 = 22;
+      s += `<text class="cap" x="${x0 + n * cell / 2}" y="12">predicted</text>`;
+      d.labels.forEach((l, j) => { s += `<text class="lab" x="${x0 + j * cell + cell / 2}" y="${y0 + n * cell + 14}">${esc(l)}</text>`; });
+      d.values.forEach((row, i) => {
+        s += `<text class="lab end" x="${x0 - 8}" y="${y0 + i * cell + cell / 2 + 4}">${esc(d.labels[i])}</text>`;
+        row.forEach((v, j) => {
+          s += `<rect class="${i === j ? "fa" : "fm"}" x="${x0 + j * cell + 1}" y="${y0 + i * cell + 1}" width="${cell - 2}" height="${cell - 2}" rx="3" fill-opacity="${(0.12 + v * 0.88).toFixed(2)}"/>`;
+          s += `<text class="${i === j && v > 0.5 ? "tl" : "td"}" x="${x0 + j * cell + cell / 2}" y="${y0 + i * cell + cell / 2 + 4}">${v.toFixed(2)}</text>`;
+        });
+      });
+      s += `<text class="cap" x="22" y="${y0 + n * cell / 2}" transform="rotate(-90 22 ${y0 + n * cell / 2})">true</text>`;
+    } else if (d.type === "hbars") {
+      const max = Math.max(...d.values), x0 = 104, bh = 20, gap = 8, y0 = 10, w = W - x0 - 34;
+      d.values.forEach((v, i) => {
+        const y = y0 + i * (bh + gap);
+        s += `<text class="lab end" x="${x0 - 8}" y="${y + bh / 2 + 4}">${esc(d.labels[i])}</text>`;
+        s += `<rect class="${i === d.highlight ? "fb" : "fa"}" x="${x0}" y="${y}" width="${(v / max * w).toFixed(1)}" height="${bh}" rx="2"/>`;
+        s += `<text class="val" x="${(x0 + v / max * w + 8).toFixed(1)}" y="${y + bh / 2 + 4}" text-anchor="start">${fmt(v)}</text>`;
+      });
+    } else {
+      const max = Math.max(...d.values), n = d.values.length, x0 = 14, base = H - 26, top = 22, slot = (W - x0 * 2) / n, bw = Math.min(46, slot * 0.62);
+      s += `<line class="ax" x1="${x0}" y1="${base}" x2="${W - x0}" y2="${base}"/>`;
+      d.values.forEach((v, i) => {
+        const h = v / max * (base - top), x = x0 + i * slot + (slot - bw) / 2;
+        s += `<rect class="${i === d.highlight ? "fb" : "fa"}" x="${x.toFixed(1)}" y="${(base - h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="2"/>`;
+        s += `<text class="val" x="${(x + bw / 2).toFixed(1)}" y="${(base - h - 5).toFixed(1)}">${fmt(v)}</text>`;
+        s += `<text class="lab" x="${(x + bw / 2).toFixed(1)}" y="${base + 15}">${esc(d.labels[i])}</text>`;
+      });
+    }
+    return `<svg class="mini real" viewBox="0 0 ${W} ${H}" ${aria}>${s}</svg>`;
+  }
+  function projectPicture(p, label) {
+    if (p.thumb) return `<img class="thumb-img" src="${p.thumb}" alt="${label ? esc(p.title) : ""}" loading="lazy">`;
+    if (p.data) return realChart(p.data, label ? p.data.title : "");
+    return chart(p.chart, label ? p.title : "");
+  }
+
   const chart = (kind, label) => `<svg class="mini" viewBox="0 0 ${CW} ${CH}" ${label ? `role="img" aria-label="${esc(label)}"` : 'aria-hidden="true"'}>${(CHARTS[kind] || CHARTS.bars)()}</svg>`;
 
   /* --------------------------------------------------------- Ask Tisya */
@@ -313,7 +356,7 @@
         <ul class="pgrid">${S.projects.map(p => `
           <li class="pcard${p.featured ? " featured" : ""}" data-cat="${p.category}">
             <button type="button" data-project="${p.id}">
-              <span class="thumb">${chart(p.chart)}</span>
+              <span class="thumb${p.thumb ? " has-img" : ""}">${projectPicture(p)}</span>
               <span class="pmeta"><span class="ptitle">${esc(p.title)}</span><span class="psum">${esc(p.summary)}</span>
               <span class="pstack">${p.stack.map(esc).join(", ")}</span></span>
             </button>
@@ -466,7 +509,7 @@
     const p = S.projects.find(x => x.id === id); if (!p) return;
     dlg.innerHTML = `
       <button type="button" class="close" aria-label="Close">×</button>
-      <div class="pd-thumb">${chart(p.chart, p.title)}</div>
+      <div class="pd-thumb${p.thumb ? " has-img" : ""}">${projectPicture(p, true)}${p.data ? `<p class="pd-cap">${esc(p.data.title)}</p>` : ""}</div>
       <div class="pd-body">
         <p class="muted">${cats[p.category]}</p>
         <h2 id="pd-title">${esc(p.title)}</h2>
@@ -474,7 +517,10 @@
         ${p.metrics ? `<dl class="metrics">${p.metrics.map(([v, l]) => `<div><dd>${esc(v)}</dd><dt>${esc(l)}</dt></div>`).join("")}</dl>` : ""}
         ${p.body.map(t => `<p>${esc(t)}</p>`).join("")}
         ${p.results ? `<h3>Results</h3><ul class="results">${p.results.map(r => `<li>${esc(r)}</li>`).join("")}</ul>` : ""}
-        ${p.link ? `<p class="pd-link"><a class="btn solid" href="${p.link}" target="_blank" rel="noopener">View code on GitHub</a></p>` : ""}
+        ${(p.images || []).filter(im => im.src !== p.thumb || (p.images || []).length > 1).length ? `<h3>Outputs</h3>${p.images.filter(im => im.src !== p.thumb).map(im => `
+          <figure class="pd-fig"><a href="${im.src}" target="_blank" rel="noopener"><img src="${im.src}" alt="${esc(im.caption)}" loading="lazy"></a><figcaption>${esc(im.caption)}</figcaption></figure>`).join("")}` : ""}
+        ${p.thumb && p.images && p.images.find(im => im.src === p.thumb) ? `<p class="muted small">${esc(p.images.find(im => im.src === p.thumb).caption)}. <a href="${p.thumb}" target="_blank" rel="noopener">Open full size</a></p>` : ""}
+        ${p.link || p.notebook ? `<p class="pd-link">${p.link ? `<a class="btn solid" href="${p.link}" target="_blank" rel="noopener">View code on GitHub</a>` : ""}${p.notebook ? `<a class="btn" href="${p.notebook}" target="_blank" rel="noopener">View the notebook</a>` : ""}</p>` : ""}
       </div>`;
     $(".close", dlg).addEventListener("click", () => dlg.close());
     if (typeof dlg.showModal === "function") { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute("open", "");

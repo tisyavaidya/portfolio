@@ -118,6 +118,11 @@ window.SITE = {
   // category: "ml" | "analytics" | "software"
   // chart: the little picture on the card (bars, line, scatter, heatmap, pie, hist, grid, blocks, map, dashboard, curve)
   // link: GitHub URL, or "" if there isn't a public repo
+  // Optional extras:
+  //   data:     real numbers for the card's chart, e.g. {type: "bars" | "hbars" | "heatmap", labels, values, unit, highlight, title}
+  //   thumb:    an image to use on the card instead of a chart
+  //   images:   real outputs shown in the write-up: [{src, caption}]
+  //   notebook: an nbviewer link to the project's notebook
   projects: [
     {
       id: "hate-speech", category: "ml", chart: "heatmap", featured: true,
@@ -131,25 +136,26 @@ window.SITE = {
         "Fine-tuned BERT and RoBERTa to capture context, then combined their predictions with probability averaging and majority voting.",
         "Designed a preprocessing pipeline with negation handling, lemmatisation and contextual text normalisation."
       ],
-      results: [
-        "Accuracy 93%, against 90% for logistic regression and 92% for standalone transformers",
-        "Macro F1 up from 0.70 to 0.79; hate speech precision up from 44% to 56%",
-        "Non-hateful profanity detection from 72% to 85%",
-        "Negated hate speech from 68% to 83%; reclaimed slurs from 65% to 82%"
-      ]
+      results: ["Ensemble accuracy 93% and macro F1 0.79 on 4,957 test tweets, against 0.75 macro F1 for BERT alone and 0.76 for RoBERTa alone", "The hardest class was hate speech itself: 47% recall, because most hateful tweets were confused with merely offensive ones", "Non-hateful profanity detection from 72% to 85%", "Negated hate speech from 68% to 83%; reclaimed slurs from 65% to 82%"],
+      data: {"type": "heatmap", "labels": ["hate", "offensive", "neither"], "values": [[0.47, 0.49, 0.05], [0.03, 0.96, 0.01], [0.01, 0.06, 0.93]], "title": "Ensemble confusion matrix (row share)"},
+      notebook: "https://nbviewer.org/github/tisyavaidya/DS340W--Project/blob/main/stacked_model.ipynb",
+      images: [{"src": "assets/projects/hate-speech-confusion.jpg", "caption": "Confusion matrix of the ensemble (averaging probabilities), from stacked_model.ipynb"}]
     },
     {
       id: "loanlens", category: "ml", chart: "bars",
       title: "LoanLens: loan approval prediction",
       stack: ["Python", "scikit-learn", "Pandas", "Seaborn"],
       link: "https://github.com/tisyavaidya/Loan-Approval-Prediction-Model",
-      summary: "Compared five classifiers on 500+ loan applications, reaching about 77% accuracy.",
+      summary: "Compared five model families on 500+ loan applications; ensembles did best at 81% accuracy.",
       body: [
         "An end-to-end machine learning pipeline for predicting loan approval from 12+ financial and demographic features.",
         "Covered preprocessing, feature engineering and exploratory analysis, then compared logistic regression, KNN, SVM, decision trees and ensemble methods.",
         "Used Pandas, Matplotlib and Seaborn for cleaning, visualisation and performance analysis."
       ],
-      results: ["About 77% prediction accuracy"]
+      results: ["Ensembles (random forest, gradient boosting and XGBoost) reached 81% test accuracy; a single decision tree was lowest at 68%", "Credit history was the clearest signal: applicants with a good credit history were approved far more often"],
+      data: {"type": "bars", "labels": ["LogReg", "KNN", "SVM", "Tree", "Ensemble"], "values": [75, 76, 76, 68, 81], "unit": "%", "highlight": 4, "title": "Test accuracy by model"},
+      notebook: "https://nbviewer.org/github/tisyavaidya/Loan-Approval-Prediction-Model/blob/main/LoanApprovalPrediction.ipynb",
+      images: [{"src": "assets/projects/loanlens-credit-history.jpg", "caption": "Approval by credit history: the clearest signal in the data"}, {"src": "assets/projects/loanlens-knn.jpg", "caption": "KNN accuracy for each value of K; K = 25 was best at 76%"}]
     },
     {
       id: "fifa", category: "ml", chart: "scatter",
@@ -168,11 +174,14 @@ window.SITE = {
       title: "JobPulse: job market scraper",
       stack: ["Python", "Requests", "BeautifulSoup", "Pandas"],
       link: "https://github.com/tisyavaidya/Web-Scrapping--Naukri.com",
-      summary: "Scraped and structured 1,000+ Naukri.com job listings for market analysis.",
+      summary: "Scraped data analyst listings from Naukri.com and measured which skills employers ask for most.",
       body: [
         "A scraping pipeline that collects job title, company, location, experience and description from Naukri.com.",
         "Cleaned and transformed the data with Pandas into a structured dataset for trend analysis."
-      ]
+      ],
+      data: {"type": "hbars", "labels": ["data analysis", "power bi", "data analytics", "sql", "analytics", "python"], "values": [36, 19, 19, 16, 15, 13], "highlight": 3, "title": "Listings mentioning each skill"},
+      notebook: "https://nbviewer.org/github/tisyavaidya/Web-Scrapping--Naukri.com/blob/main/Web%20Scrapping-%20Naukri.com.ipynb",
+      results: ["In 60 data analyst listings, the most requested skills were data analysis (36 listings), Power BI (19), SQL (16) and Python (13)"]
     },
     {
       id: "mindscope", category: "analytics", chart: "dashboard",
@@ -183,7 +192,10 @@ window.SITE = {
       body: [
         "Visualisations of demographic trends, workplace support and how people report mental health.",
         "Filters, calculated fields and interactivity relate employee demographics and workplace policies to outcomes."
-      ]
+      ],
+      data: {"type": "bars", "labels": ["1–5", "6–25", "26–100", "100–500", "500–1k", "1k+"], "values": [12, 21, 35, 45, 58, 65], "unit": "%", "highlight": 5, "title": "Have mental health benefits, by company size"},
+      images: [{"src": "assets/projects/mindscope-dashboard.jpg", "caption": "Dashboard overview (the thumbnail saved in the Tableau workbook)"}],
+      results: ["Mental health benefits rise with company size: 12% of people at companies with 1–5 employees had them, against 65% at companies with more than 1,000", "70% of women in the survey had sought treatment, against 45% of men"]
     },
     {
       id: "niftypulse", category: "analytics", chart: "line",
@@ -194,18 +206,23 @@ window.SITE = {
       body: [
         "Prepared the data in Power Query and wrote DAX measures for financial indicators.",
         "Time-based visuals track price movements, yearly trends and market behaviour."
-      ]
+      ],
+      thumb: "assets/projects/niftypulse-dashboard.jpg",
+      images: [{"src": "assets/projects/niftypulse-dashboard.jpg", "caption": "The Power BI dashboard, from the exported PDF in the repo"}],
+      results: ["Between 2020 and 2025 the index closed as low as 7,610 and as high as 26,216, with an average close of 18,552", "Trading volume peaked in 2020 and fell by more than half by 2023, even as prices kept climbing"]
     },
     {
       id: "salesvision", category: "analytics", chart: "bars2",
       title: "SalesVision: sales analytics",
       stack: ["Excel", "Pivot tables"],
       link: "https://github.com/tisyavaidya/Sales-Dashboard-Excel",
-      summary: "Pivot tables and slicers over 10,000+ sales records.",
+      summary: "Pivot tables and slicers over 8,300+ sales records from 2021 to 2024.",
       body: [
         "Tracks revenue, regional performance and product category trends.",
         "Interactive filters make it quick to find the top regions and products."
-      ]
+      ],
+      data: {"type": "bars", "labels": ["Furniture", "Office supplies", "Technology"], "values": [17.9, 108.2, 121.9], "unit": "k", "prefix": "$", "highlight": 0, "title": "Profit by category"},
+      results: ["Furniture made 32% of the $1.93M in sales but only 7% of the $248K profit", "Tables were the biggest loss-maker, losing $12.3K over four years", "California and New York together brought in a third of all sales"]
     },
     {
       id: "tripvista", category: "analytics", chart: "map",
@@ -216,7 +233,10 @@ window.SITE = {
       body: [
         "Models itineraries, bookings, destinations and reviews in a relational database.",
         "SQL analysis extracts patterns across trips and reviews."
-      ]
+      ],
+      thumb: "assets/projects/tripvista-er.jpg",
+      images: [{"src": "assets/projects/tripvista-er.jpg", "caption": "Entity-relationship diagram, from the project slides"}],
+      results: ["Six normalised tables (users, trips, destinations, activities, bookings and reviews), queried with four multi-table joins, five subqueries and three reporting views"]
     },
     {
       id: "cache", category: "software", chart: "blocks",
