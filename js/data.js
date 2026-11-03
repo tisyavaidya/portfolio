@@ -143,7 +143,8 @@ window.SITE = {
     ["Languages", "Python, SQL"],
     ["Data analysis", "NumPy, pandas, Matplotlib"],
     ["Machine learning", "scikit-learn: regression, classification, model evaluation"],
-    ["Analytics", "Excel, Tableau, Power BI"]
+    ["Analytics", "Excel, Tableau, Power BI"],
+    ["Tools", "Jupyter Notebook"]
   ],
 
   /* ------------------------------------------------------------ Projects */
